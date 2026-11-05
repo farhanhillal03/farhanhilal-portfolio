@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <rect width="400" height="300" fill="#0a192e" rx="12" />
+  <circle cx="200" cy="125" r="45" fill="none" stroke="#C6A15B" stroke-width="2" />
+  <polygon points="200,105 215,130 185,130" fill="#C6A15B" />
+  <text x="200" y="195" font-family="'Inter', sans-serif" font-weight="700" font-size="17" fill="#FFFFFF" text-anchor="middle">National Forum</text>
+  <text x="200" y="220" font-family="'Inter', sans-serif" font-weight="400" font-size="12" fill="#C6A15B" text-anchor="middle">Delegation at Forum FKMPI Nasional</text>
+</svg>

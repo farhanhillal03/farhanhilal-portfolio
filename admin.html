@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farhan Hilal Portfolio - CMS Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Cropper.js for Photo Cropping & Fitting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <style>
+        :root {
+            --primary: #102746;
+            --primary-light: #183860;
+            --accent: #C6A15B;
+            --accent-light: #dfc282;
+            --bg: #F4F6FA;
+            --card-bg: #FFFFFF;
+            --text-main: #1A1A2E;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --danger: #EF4444;
+            --success: #10B981;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(16, 39, 70, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .sidebar-brand {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-brand-badge {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 800;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .sidebar-brand-text h2 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-brand-text p {
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 16px 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: rgba(255,255,255,0.1);
+            color: #FFFFFF;
+        }
+
+        .sidebar-menu a.active {
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .sidebar-menu a.active i {
+            color: var(--primary);
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-view-site {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: 0.2s;
+        }
+
+        .btn-view-site:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-wrapper {
+            margin-left: 280px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-header {
+            height: 70px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .top-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-save-all {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(16, 39, 70, 0.2);
+        }
+
+        .btn-save-all:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .content-area {
+            padding: 32px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Section Cards */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .panel-header-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .panel-header-title p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Form Controls */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-main);
+            background: #FAFAFC;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            background: #FFFFFF;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        /* Upload Container */
+        .upload-field {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: #F8FAFC;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px dashed var(--border);
+        }
+
+        .preview-thumb {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .upload-btn-wrap {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-upload {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+
+        .btn-upload:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .upload-btn-wrap input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Repeatable List Items */
+        .repeat-item {
+            background: #FAFAFC;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .repeat-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        .btn-delete-item {
+            background: #FEE2E2;
+            color: var(--danger);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.2s;
+        }
+
+        .btn-delete-item:hover {
+            background: var(--danger);
+            color: #FFFFFF;
+        }
+
+        .btn-add-item {
+            background: #EFF6FF;
+            color: #2563EB;
+            border: 1px dashed #93C5FD;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-add-item:hover {
+            background: #DBEAFE;
+        }
+
+        /* Tags Input */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag-badge {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag-badge i {
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .tag-badge i:hover {
+            color: var(--danger);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 24px;
+            background: #10B981;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Modal Crop Editor */
+        .crop-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 39, 70, 0.85);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .crop-modal-backdrop.active {
+            display: flex;
+        }
+
+        .crop-modal-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            max-width: 720px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .crop-modal-header {
+            padding: 18px 24px;
+            background: var(--primary);
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .crop-modal-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .crop-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .crop-image-container {
+            max-height: 380px;
+            background: #0d203a;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crop-image-container img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .crop-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            background: #F4F6FA;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+
+        .crop-aspect-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-aspect {
+            padding: 6px 12px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-aspect.active, .btn-aspect:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        .crop-action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-crop-tool {
+            padding: 6px 10px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-crop-tool:hover {
+            background: #E2E8F0;
+        }
+
+        .crop-modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #FAFAFC;
+        }
+
+        .btn-modal-cancel {
+            padding: 9px 18px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-modal-apply {
+            padding: 9px 22px;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(198, 161, 91, 0.3);
+        }
+
+        .btn-modal-apply:hover {
+            background: var(--accent-light);
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 70px;
+            }
+            .sidebar-brand-text, .sidebar-menu a span, .sidebar-footer {
+                display: none;
+            }
+            .main-wrapper {
+                margin-left: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-brand-badge">FH</div>
+            <div class="sidebar-brand-text">
+                <h2>Farhan Hilal</h2>
+                <p>CMS Control Center</p>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a class="nav-tab active" data-tab="tab-branding"><i data-lucide="image-plus"></i><span>Logo & Branding</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-hero"><i data-lucide="layout"></i><span>Hero Section</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-about"><i data-lucide="user"></i><span>Tentang Saya</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-education"><i data-lucide="graduation-cap"></i><span>Pendidikan</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-experience"><i data-lucide="briefcase"></i><span>Pengalaman Kerja</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-projects"><i data-lucide="folder-kanban"></i><span>Portfolio & Riset</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-certificates"><i data-lucide="award"></i><span>Sertifikat</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-organizations"><i data-lucide="users"></i><span>Organisasi</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-achievements"><i data-lucide="trophy"></i><span>Prestasi / Juara</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-skills"><i data-lucide="check-square"></i><span>Keahlian & Skills</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-gallery"><i data-lucide="image"></i><span>Galeri Foto</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-cv"><i data-lucide="file-text"></i><span>Dokumen CV PDF</span></a></li>
+            <li><a class="nav-tab" data-tab="tab-contact"><i data-lucide="mail"></i><span>Kontak & Sosial</span></a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="/" target="_blank" class="btn-view-site">
+                <i data-lucide="external-link"></i>
+                <span>Lihat Web Live</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <h1 id="page-title">Logo & Branding Management</h1>
+            <div class="header-actions">
+                <button class="btn-save-all" id="btnSaveData">
+                    <i data-lucide="save"></i>
+                    <span>Simpan Perubahan</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="content-area">
+            
+            <!-- 0. LOGO & BRANDING -->
+            <div id="tab-branding" class="tab-panel active">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Logo & Identitas Brand Website</h3>
+                            <p>Upload logo kustom resmi Anda untuk ditampilkan pada bagian navigasi website atau atur teks inisial badge.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:24px;">
+                        <label>Logo Website Saat Ini</label>
+                        <div class="image-uploader" style="align-items:center;">
+                            <img id="branding_logo_preview" src="" alt="Logo Preview" class="preview-thumb" style="width:130px; height:60px; object-fit:contain; background:#102746; padding:8px; border-radius:8px; border:1px solid #C6A15B;">
+                            <div style="flex:1;">
+                                <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">Format file: PNG transparan, SVG, atau JPG. Logo akan langsung tampil di navbar website.</p>
+                                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                                    <div class="upload-btn-wrap">
+                                        <button type="button" class="btn-upload"><i data-lucide="upload"></i> Upload Logo Baru</button>
+                                        <input type="file" id="input_branding_logo" accept="image/*" onchange="handleLogoUpload(this)">
+                                    </div>
+                                    <button type="button" class="btn-upload" style="color:var(--danger); border-color:#fca5a5;" onclick="resetLogoToDefault()"><i data-lucide="trash-2"></i> Gunakan Inisial Default (FH)</button>
+                                </div>
+                                <input type="hidden" id="branding_logoUrl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Inisial Badge (Muncul jika logo gambar kosong)</label>
+                            <input type="text" id="branding_logoBadge" placeholder="FH">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Brand / Teks Logo Navigasi</label>
+                            <input type="text" id="branding_logoText" placeholder="Farhan Hilal">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subteks / Tagline Navigasi</label>
+                        <input type="text" id="branding_logoSub" placeholder="Public Finance & Banking">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. HERO SECTION -->
+            <div id="tab-hero" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Teks & Foto Utama Hero</h3>
+                            <p>Ubah ucapan pembuka, nama, jabatan profesional, deskripsi singkat, dan foto portrait.</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Sapaan / Greeting</label>
+                            <input type="text" id="hero_greeting">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" id="hero_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gelar Profesional / Title</label>
+                            <input type="text" id="hero_title">
+                        </div>
+                        <div class="form-group">
+                            <label>Program Studi & Kampus</label>
+                            <input type="text" id="hero_education">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Singkat Profil</label>
+                        <textarea id="hero_description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto Portrait Hero</label>
+                        <div class="upload-field">
+                            <img id="hero_portrait_preview" class="preview-thumb" src="">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Ganti Foto Portrait</button>
+                                    <input type="file" accept="image/*" onchange="handleImageUpload(this, 'hero_portraitImage', 'hero_portrait_preview')">
+                                </div>
+                                <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Format JPG, PNG, atau SVG disarankan rasio 3:4</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="hero_portraitImage">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ABOUT SECTION -->
+            <div id="tab-about" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Profil & Tentang Saya</h3>
+                            <p>Deskripsi komprehensif, biodata kontak, dan bidang ketertarikan.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Paragraf Pengenalan / Intro</label>
+                        <textarea id="about_intro" rows="4"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" id="about_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Pendidikan</label>
+                            <input type="text" id="about_education">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Institusi</label>
+                            <input type="text" id="about_institution">
+                        </div>
+                        <div class="form-group">
+                            <label>Lokasi</label>
+                            <input type="text" id="about_location">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto Profil About</label>
+                        <div class="upload-field">
+                            <img id="about_portrait_preview" class="preview-thumb" src="">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Ganti Foto About</button>
+                                    <input type="file" accept="image/*" onchange="handleImageUpload(this, 'about_aboutImage', 'about_portrait_preview')">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="about_aboutImage">
+                    </div>
+                    <div class="form-group">
+                        <label>Bidang Ketertarikan (Areas of Interest)</label>
+                        <div id="about_interests_container" class="tags-container"></div>
+                        <div style="display:flex; gap:10px; margin-top:10px;">
+                            <input type="text" id="new_interest_input" placeholder="Tambah minat baru..." style="flex:1;">
+                            <button type="button" class="btn-upload" onclick="addInterest()"><i data-lucide="plus"></i> Tambah</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. EDUCATION SECTION -->
+            <div id="tab-education" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Pendidikan Tinggi</h3>
+                            <p>Rincian kampus, jenjang, jurusan, dan mata kuliah relevan.</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Institusi / Kampus</label>
+                            <input type="text" id="edu_institution">
+                        </div>
+                        <div class="form-group">
+                            <label>Jenjang Gelar (Badge)</label>
+                            <input type="text" id="edu_degree">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Program Studi</label>
+                            <input type="text" id="edu_major">
+                        </div>
+                        <div class="form-group">
+                            <label>Jurusan / Fakultas</label>
+                            <input type="text" id="edu_department">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mata Kuliah Relevan (Coursework)</label>
+                        <div id="edu_subjects_container" class="tags-container"></div>
+                        <div style="display:flex; gap:10px; margin-top:10px;">
+                            <input type="text" id="new_subject_input" placeholder="Tambah mata kuliah..." style="flex:1;">
+                            <button type="button" class="btn-upload" onclick="addSubject()"><i data-lucide="plus"></i> Tambah</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pendidikan Sebelumnya (Slot Opsional)</label>
+                        <input type="text" id="edu_previousEducation">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. EXPERIENCE SECTION -->
+            <div id="tab-experience" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Pengalaman Magang & Perbankan</h3>
+                            <p>Detail instansi, cabang, periode, tanggung jawab, dan foto kegiatan magang.</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Perusahaan / Bank</label>
+                            <input type="text" id="exp_company">
+                        </div>
+                        <div class="form-group">
+                            <label>Kantor Cabang</label>
+                            <input type="text" id="exp_branch">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Posisi / Jabatan</label>
+                            <input type="text" id="exp_position">
+                        </div>
+                        <div class="form-group">
+                            <label>Periode</label>
+                            <input type="text" id="exp_period">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Daftar Tanggung Jawab & Pekerjaan</label>
+                        <div id="exp_responsibilities_list"></div>
+                        <button type="button" class="btn-add-item" onclick="addResponsibility()"><i data-lucide="plus"></i> Tambah Tanggung Jawab</button>
+                    </div>
+
+                    <div style="margin-top: 32px; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <h4 style="font-size:15px; margin-bottom:12px; color:var(--primary);">Galeri Foto Aktivitas Magang</h4>
+                        <div id="exp_activities_list"></div>
+                        <button type="button" class="btn-add-item" onclick="addExperienceActivity()"><i data-lucide="plus"></i> Tambah Foto Aktivitas Magang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PORTFOLIO & PROJECTS SECTION -->
+            <div id="tab-projects" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Portfolio, Riset & Proyek</h3>
+                            <p>Kelola judul riset skripsi, analisis finansial, thumbnail grafis, dan lampiran PDF.</p>
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addProject()"><i data-lucide="plus"></i> Tambah Proyek</button>
+                    </div>
+                    <div id="projects_list"></div>
+                </div>
+            </div>
+
+            <!-- 6. CERTIFICATES SECTION -->
+            <div id="tab-certificates" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Sertifikat & Pelatihan</h3>
+                            <p>Upload gambar sertifikat resmi, nama pelatihan, lembaga penerbit, dan tahun.</p>
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addCertificate()"><i data-lucide="plus"></i> Tambah Sertifikat</button>
+                    </div>
+                    <div id="certificates_list"></div>
+                </div>
+            </div>
+
+            <!-- 7. ORGANIZATIONS SECTION -->
+            <div id="tab-organizations" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Pengalaman Organisasi</h3>
+                            <p>Organisasi kampus/kemahasiswaan, jabatan kepengurusan, dan poin kegiatan.</p>
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addOrganization()"><i data-lucide="plus"></i> Tambah Organisasi</button>
+                    </div>
+                    <div id="organizations_list"></div>
+                </div>
+            </div>
+
+            <!-- 8. ACHIEVEMENTS SECTION -->
+            <div id="tab-achievements" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Prestasi & Penghargaan</h3>
+                            <p>Peringkat juara, nama kompetisi, dan instansi penyelenggara.</p>
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addAchievement()"><i data-lucide="plus"></i> Tambah Prestasi</button>
+                    </div>
+                    <div id="achievements_list"></div>
+                </div>
+            </div>
+
+            <!-- 9. SKILLS SECTION -->
+            <div id="tab-skills" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Keahlian & Kompetensi</h3>
+                            <p>Keahlian Teknis (Technical Skills) dan Keahlian Profesional (Soft Skills).</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Technical Skills (Keahlian Teknis / Finansial)</label>
+                        <div id="skills_technical_container" class="tags-container"></div>
+                        <div style="display:flex; gap:10px; margin-top:10px;">
+                            <input type="text" id="new_tech_skill" placeholder="Contoh: EViews 12, SAP Accrual..." style="flex:1;">
+                            <button type="button" class="btn-upload" onclick="addSkill('technical')"><i data-lucide="plus"></i> Tambah</button>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label>Professional Skills (Komunikasi & Manajemen)</label>
+                        <div id="skills_professional_container" class="tags-container"></div>
+                        <div style="display:flex; gap:10px; margin-top:10px;">
+                            <input type="text" id="new_prof_skill" placeholder="Contoh: Problem Solving, Integrity..." style="flex:1;">
+                            <button type="button" class="btn-upload" onclick="addSkill('professional')"><i data-lucide="plus"></i> Tambah</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. GALLERY SECTION -->
+            <div id="tab-gallery" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Galeri Foto Masonry</h3>
+                            <p>Upload foto kegiatan, deskripsi caption, dan opsi tata letak vertikal (tall).</p>
+                        </div>
+                        <button type="button" class="btn-add-item" onclick="addGalleryItem()"><i data-lucide="plus"></i> Tambah Foto Galeri</button>
+                    </div>
+                    <div id="gallery_list"></div>
+                </div>
+            </div>
+
+            <!-- 11. CV PDF DOCUMENT -->
+            <div id="tab-cv" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>File CV Resmi (PDF)</h3>
+                            <p>Ganti dokumen PDF resume CV yang dapat diunduh oleh rekruter bank & BUMN.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>File CV PDF Saat Ini</label>
+                        <input type="text" id="cv_pdfPath" readonly style="background:#ECEFF5;">
+                    </div>
+                    <div class="upload-field" style="margin-top:16px;">
+                        <i data-lucide="file-text" style="width:40px; height:40px; color:var(--accent);"></i>
+                        <div>
+                            <div class="upload-btn-wrap">
+                                <button class="btn-upload"><i data-lucide="upload"></i> Upload File CV PDF Baru</button>
+                                <input type="file" accept="application/pdf" onchange="handleCvUpload(this)">
+                            </div>
+                            <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">Upload file format .PDF resmi Anda. File akan otomatis tertaut ke tombol Download CV di website utama.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. CONTACT SECTION -->
+            <div id="tab-contact" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-header-title">
+                            <h3>Informasi Kontak & Sosial Media</h3>
+                            <p>Email aktif, kota domisili, profil LinkedIn, dan akun Instagram.</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Kontak</label>
+                            <input type="email" id="contact_email">
+                        </div>
+                        <div class="form-group">
+                            <label>Lokasi Domisili</label>
+                            <input type="text" id="contact_location">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>LinkedIn Profile / URL</label>
+                            <input type="text" id="contact_linkedin">
+                        </div>
+                        <div class="form-group">
+                            <label>Instagram Handle / URL</label>
+                            <input type="text" id="contact_instagram">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Data berhasil disimpan!</div>
+
+    <!-- Image Cropper & Fit Modal -->
+    <div id="cropModal" class="crop-modal-backdrop">
+        <div class="crop-modal-card">
+            <div class="crop-modal-header">
+                <h3><i data-lucide="crop" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"></i> Sesuaikan Ukuran & Crop Foto</h3>
+                <button type="button" onclick="closeCropModal()" style="background:none; border:none; color:white; cursor:pointer;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="crop-modal-body">
+                <div class="crop-image-container">
+                    <img id="cropImageTarget" src="">
+                </div>
+                <div class="crop-controls">
+                    <div>
+                        <span style="font-size:12px; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">PILIHAN RASIO UKURAN FOTO:</span>
+                        <div class="crop-aspect-btns">
+                            <button type="button" class="btn-aspect active" data-ratio="0.75" onclick="setCropRatio(3/4, this)">Portrait (3:4)</button>
+                            <button type="button" class="btn-aspect" data-ratio="0.8" onclick="setCropRatio(4/5, this)">Pas Foto (4:5)</button>
+                            <button type="button" class="btn-aspect" data-ratio="1" onclick="setCropRatio(1, this)">Persegi (1:1)</button>
+                            <button type="button" class="btn-aspect" data-ratio="1.33" onclick="setCropRatio(4/3, this)">Landscape (4:3)</button>
+                            <button type="button" class="btn-aspect" data-ratio="NaN" onclick="setCropRatio(NaN, this)">Bebas (Tanpa Crop)</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span style="font-size:12px; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">ROTASI & ZOOM:</span>
+                        <div class="crop-action-btns">
+                            <button type="button" class="btn-crop-tool" onclick="cropper && cropper.rotate(-90)" title="Putar Kiri"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i></button>
+                            <button type="button" class="btn-crop-tool" onclick="cropper && cropper.rotate(90)" title="Putar Kanan"><i data-lucide="rotate-cw" style="width:16px;height:16px;"></i></button>
+                            <button type="button" class="btn-crop-tool" onclick="cropper && cropper.zoom(0.1)" title="Perbesar"><i data-lucide="zoom-in" style="width:16px;height:16px;"></i></button>
+                            <button type="button" class="btn-crop-tool" onclick="cropper && cropper.zoom(-0.1)" title="Perkecil"><i data-lucide="zoom-out" style="width:16px;height:16px;"></i></button>
+                            <button type="button" class="btn-crop-tool" onclick="cropper && cropper.reset()" title="Reset"><i data-lucide="refresh-cw" style="width:16px;height:16px;"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crop-modal-footer">
+                <button type="button" class="btn-modal-cancel" onclick="closeCropModal()">Batal</button>
+                <button type="button" class="btn-modal-apply" onclick="applyAndUploadCroppedImage()">
+                    <i data-lucide="check"></i> Terapkan & Simpan Foto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = {};
+
+        // Fetch Initial Data
+        async function loadSiteData() {
+            try {
+                const res = await fetch('/api/data');
+                if (res.ok) {
+                    currentData = await res.json();
+                } else {
+                    currentData = JSON.parse(localStorage.getItem('farhan_portfolio_data') || '{}');
+                }
+            } catch (e) {
+                currentData = JSON.parse(localStorage.getItem('farhan_portfolio_data') || '{}');
+            }
+            populateForms();
+            lucide.createIcons();
+        }
+
+        function populateForms() {
+            if (!currentData.hero) return;
+
+            // Branding & Logo
+            if (currentData.branding) {
+                document.getElementById('branding_logoUrl').value = currentData.branding.logoUrl || '';
+                if (currentData.branding.logoUrl) {
+                    document.getElementById('branding_logo_preview').src = currentData.branding.logoUrl;
+                }
+                document.getElementById('branding_logoBadge').value = currentData.branding.logoBadge || 'FH';
+                document.getElementById('branding_logoText').value = currentData.branding.logoText || 'Farhan Hilal';
+                document.getElementById('branding_logoSub').value = currentData.branding.logoSub || 'Public Finance & Banking';
+            }
+
+            // Hero
+            document.getElementById('hero_greeting').value = currentData.hero.greeting || '';
+            document.getElementById('hero_name').value = currentData.hero.name || '';
+            document.getElementById('hero_title').value = currentData.hero.title || '';
+            document.getElementById('hero_education').value = currentData.hero.education || '';
+            document.getElementById('hero_description').value = currentData.hero.description || '';
+            document.getElementById('hero_portraitImage').value = currentData.hero.portraitImage || '';
+            document.getElementById('hero_portrait_preview').src = currentData.hero.portraitImage || '';
+
+            // About
+            document.getElementById('about_intro').value = currentData.about.intro || '';
+            document.getElementById('about_name').value = currentData.about.name || '';
+            document.getElementById('about_education').value = currentData.about.education || '';
+            document.getElementById('about_institution').value = currentData.about.institution || '';
+            document.getElementById('about_location').value = currentData.about.location || '';
+            document.getElementById('about_aboutImage').value = currentData.about.aboutImage || '';
+            document.getElementById('about_portrait_preview').src = currentData.about.aboutImage || '';
+            renderTags('about_interests_container', currentData.about.interests, removeInterest);
+
+            // Education
+            document.getElementById('edu_institution').value = currentData.education.institution || '';
+            document.getElementById('edu_degree').value = currentData.education.degree || '';
+            document.getElementById('edu_major').value = currentData.education.major || '';
+            document.getElementById('edu_department').value = currentData.education.department || '';
+            document.getElementById('edu_previousEducation').value = currentData.education.previousEducation || '';
+            renderTags('edu_subjects_container', currentData.education.subjects, removeSubject);
+
+            // Experience
+            document.getElementById('exp_company').value = currentData.experience.company || '';
+            document.getElementById('exp_branch').value = currentData.experience.branch || '';
+            document.getElementById('exp_position').value = currentData.experience.position || '';
+            document.getElementById('exp_period').value = currentData.experience.period || '';
+            renderResponsibilities();
+            renderExperienceActivities();
+
+            // Projects
+            renderProjects();
+
+            // Certificates
+            renderCertificates();
+
+            // Organizations
+            renderOrganizations();
+
+            // Achievements
+            renderAchievements();
+
+            // Skills
+            renderTags('skills_technical_container', currentData.skills.technical, (idx) => removeSkill('technical', idx));
+            renderTags('skills_professional_container', currentData.skills.professional, (idx) => removeSkill('professional', idx));
+
+            // Gallery
+            renderGallery();
+
+            // CV
+            document.getElementById('cv_pdfPath').value = currentData.cv ? currentData.cv.pdfPath : 'assets/docs/Farhan_Hilal_CV.pdf';
+
+            // Contact
+            document.getElementById('contact_email').value = currentData.contact.email || '';
+            document.getElementById('contact_location').value = currentData.contact.location || '';
+            document.getElementById('contact_linkedin').value = currentData.contact.linkedin || '';
+            document.getElementById('contact_instagram').value = currentData.contact.instagram || '';
+        }
+
+        // Tag Badges Helper
+        function renderTags(containerId, list, removeCallback) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            if (!list) return;
+            list.forEach((item, index) => {
+                const badge = document.createElement('div');
+                badge.className = 'tag-badge';
+                badge.innerHTML = `<span>${item}</span> <i data-lucide="x" onclick="${removeCallback.name}(${index})" style="width:14px;height:14px;"></i>`;
+                container.appendChild(badge);
+            });
+            lucide.createIcons();
+        }
+
+        function addInterest() {
+            const val = document.getElementById('new_interest_input').value.trim();
+            if (val) {
+                currentData.about.interests.push(val);
+                document.getElementById('new_interest_input').value = '';
+                renderTags('about_interests_container', currentData.about.interests, removeInterest);
+            }
+        }
+        function removeInterest(index) {
+            currentData.about.interests.splice(index, 1);
+            renderTags('about_interests_container', currentData.about.interests, removeInterest);
+        }
+
+        function addSubject() {
+            const val = document.getElementById('new_subject_input').value.trim();
+            if (val) {
+                currentData.education.subjects.push(val);
+                document.getElementById('new_subject_input').value = '';
+                renderTags('edu_subjects_container', currentData.education.subjects, removeSubject);
+            }
+        }
+        function removeSubject(index) {
+            currentData.education.subjects.splice(index, 1);
+            renderTags('edu_subjects_container', currentData.education.subjects, removeSubject);
+        }
+
+        function addSkill(type) {
+            const inputId = type === 'technical' ? 'new_tech_skill' : 'new_prof_skill';
+            const val = document.getElementById(inputId).value.trim();
+            if (val) {
+                currentData.skills[type].push(val);
+                document.getElementById(inputId).value = '';
+                renderTags(type === 'technical' ? 'skills_technical_container' : 'skills_professional_container', currentData.skills[type], (idx) => removeSkill(type, idx));
+            }
+        }
+        function removeSkill(type, index) {
+            currentData.skills[type].splice(index, 1);
+            renderTags(type === 'technical' ? 'skills_technical_container' : 'skills_professional_container', currentData.skills[type], (idx) => removeSkill(type, idx));
+        }
+
+        // Responsibilities
+        function renderResponsibilities() {
+            const list = document.getElementById('exp_responsibilities_list');
+            list.innerHTML = '';
+            (currentData.experience.responsibilities || []).forEach((resp, idx) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'display:flex; gap:10px; margin-bottom:8px; align-items:center;';
+                div.innerHTML = `
+                    <input type="text" value="${resp}" oninput="currentData.experience.responsibilities[${idx}] = this.value" style="flex:1; padding:8px 12px; border:1px solid var(--border); border-radius:6px;">
+                    <button type="button" class="btn-delete-item" onclick="removeResponsibility(${idx})"><i data-lucide="trash-2" style="width:14px;height:14px;"></i></button>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addResponsibility() {
+            if (!currentData.experience.responsibilities) currentData.experience.responsibilities = [];
+            currentData.experience.responsibilities.push('Tanggung jawab baru...');
+            renderResponsibilities();
+        }
+        function removeResponsibility(idx) {
+            currentData.experience.responsibilities.splice(idx, 1);
+            renderResponsibilities();
+        }
+
+        // Experience Activities
+        function renderExperienceActivities() {
+            const list = document.getElementById('exp_activities_list');
+            list.innerHTML = '';
+            (currentData.experience.activities || []).forEach((act, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Aktivitas Magang #${idx + 1}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeExperienceActivity(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Judul Aktivitas</label>
+                            <input type="text" value="${act.title}" oninput="currentData.experience.activities[${idx}].title = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Caption / Keterangan</label>
+                            <input type="text" value="${act.caption}" oninput="currentData.experience.activities[${idx}].caption = this.value">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto Aktivitas</label>
+                        <div class="upload-field">
+                            <img id="exp_act_prev_${idx}" class="preview-thumb" src="${act.image}">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Upload Foto</button>
+                                    <input type="file" accept="image/*" onchange="uploadItemImage(this, (url) => { currentData.experience.activities[${idx}].image = url; document.getElementById('exp_act_prev_${idx}').src = url; })">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addExperienceActivity() {
+            if (!currentData.experience.activities) currentData.experience.activities = [];
+            currentData.experience.activities.push({
+                title: "Aktivitas Operasional",
+                caption: "Keterangan kegiatan magang di BTN KCS Lhokseumawe",
+                image: "assets/img/activity-1.svg"
+            });
+            renderExperienceActivities();
+        }
+        function removeExperienceActivity(idx) {
+            currentData.experience.activities.splice(idx, 1);
+            renderExperienceActivities();
+        }
+
+        // Projects
+        function renderProjects() {
+            const list = document.getElementById('projects_list');
+            list.innerHTML = '';
+            (currentData.projects || []).forEach((p, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Proyek #${idx + 1}: ${p.title}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeProject(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Judul Proyek</label>
+                            <input type="text" value="${p.title}" oninput="currentData.projects[${idx}].title = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori Badge (Contoh: Research, Analysis, Internship)</label>
+                            <input type="text" value="${p.category}" oninput="currentData.projects[${idx}].category = this.value">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-judul / Fokus Spesifik</label>
+                        <input type="text" value="${p.subtitle}" oninput="currentData.projects[${idx}].subtitle = this.value">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Proyek</label>
+                        <textarea rows="2" oninput="currentData.projects[${idx}].description = this.value">${p.description}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Thumbnail Banner Proyek</label>
+                        <div class="upload-field">
+                            <img id="proj_prev_${idx}" class="preview-thumb" src="${p.image}">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Upload Thumbnail Banner</button>
+                                    <input type="file" accept="image/*" onchange="uploadItemImage(this, (url) => { currentData.projects[${idx}].image = url; document.getElementById('proj_prev_${idx}').src = url; })">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addProject() {
+            if (!currentData.projects) currentData.projects = [];
+            currentData.projects.push({
+                id: "project_" + Date.now(),
+                title: "Judul Proyek Baru",
+                category: "Analysis",
+                image: "assets/img/thumb-analysis.svg",
+                subtitle: "Analisis Keuangan Publik & Pemerintahan Daerah",
+                description: "Deskripsi singkat mengenai metodologi, analisis data, dan temuan hasil riset.",
+                pdfUrl: "assets/docs/Farhan_Hilal_CV.pdf"
+            });
+            renderProjects();
+        }
+        function removeProject(idx) {
+            currentData.projects.splice(idx, 1);
+            renderProjects();
+        }
+
+        // Certificates
+        function renderCertificates() {
+            const list = document.getElementById('certificates_list');
+            list.innerHTML = '';
+            (currentData.certificates || []).forEach((c, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Sertifikat #${idx + 1}: ${c.title}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeCertificate(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Sertifikat</label>
+                            <input type="text" value="${c.title}" oninput="currentData.certificates[${idx}].title = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Lembaga Penerbit (Issuer)</label>
+                            <input type="text" value="${c.issuer}" oninput="currentData.certificates[${idx}].issuer = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Tahun Terbit</label>
+                            <input type="text" value="${c.year}" oninput="currentData.certificates[${idx}].year = this.value">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar / Dokumen Sertifikat</label>
+                        <div class="upload-field">
+                            <img id="cert_prev_${idx}" class="preview-thumb" src="${c.image}">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Upload Gambar Sertifikat</button>
+                                    <input type="file" accept="image/*" onchange="uploadItemImage(this, (url) => { currentData.certificates[${idx}].image = url; document.getElementById('cert_prev_${idx}').src = url; })">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addCertificate() {
+            if (!currentData.certificates) currentData.certificates = [];
+            currentData.certificates.push({
+                title: "Nama Sertifikasi Baru",
+                issuer: "Lembaga Resmi Penerbit",
+                year: "2024",
+                image: "assets/img/cert-dev.svg"
+            });
+            renderCertificates();
+        }
+        function removeCertificate(idx) {
+            currentData.certificates.splice(idx, 1);
+            renderCertificates();
+        }
+
+        // Organizations
+        function renderOrganizations() {
+            const list = document.getElementById('organizations_list');
+            list.innerHTML = '';
+            (currentData.organizations || []).forEach((org, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Organisasi #${idx + 1}: ${org.name}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeOrganization(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Lembaga Organisasi</label>
+                            <input type="text" value="${org.name}" oninput="currentData.organizations[${idx}].name = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Periode Kepengurusan</label>
+                            <input type="text" value="${org.period}" oninput="currentData.organizations[${idx}].period = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Jabatan / Posisi</label>
+                            <input type="text" value="${org.position}" oninput="currentData.organizations[${idx}].position = this.value">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Daftar Kegiatan & Tanggung Jawab (1 baris per poin)</label>
+                        <textarea rows="3" oninput="currentData.organizations[${idx}].activities = this.value.split('\\n').filter(s=>s.trim())">${(org.activities||[]).join('\n')}</textarea>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addOrganization() {
+            if (!currentData.organizations) currentData.organizations = [];
+            currentData.organizations.push({
+                name: "Nama Lembaga Organisasi",
+                period: "2023 – 2024",
+                position: "Ketua Divisi",
+                activities: ["Mengkoordinasikan program kerja organisasi", "Memimpin tim kerja kepengurusan"]
+            });
+            renderOrganizations();
+        }
+        function removeOrganization(idx) {
+            currentData.organizations.splice(idx, 1);
+            renderOrganizations();
+        }
+
+        // Achievements
+        function renderAchievements() {
+            const list = document.getElementById('achievements_list');
+            list.innerHTML = '';
+            (currentData.achievements || []).forEach((ach, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Prestasi #${idx + 1}: ${ach.title}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeAchievement(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Peringkat Juara (Contoh: Juara 1)</label>
+                            <input type="text" value="${ach.rank}" oninput="currentData.achievements[${idx}].rank = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Lomba / Kompetisi</label>
+                            <input type="text" value="${ach.title}" oninput="currentData.achievements[${idx}].title = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Penyelenggara (Contoh: Bank Indonesia)</label>
+                            <input type="text" value="${ach.organizer}" oninput="currentData.achievements[${idx}].organizer = this.value">
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addAchievement() {
+            if (!currentData.achievements) currentData.achievements = [];
+            currentData.achievements.push({
+                rank: "Juara 1",
+                title: "Nama Kompetisi / Kejuaraan",
+                organizer: "Instansi Penyelenggara"
+            });
+            renderAchievements();
+        }
+        function removeAchievement(idx) {
+            currentData.achievements.splice(idx, 1);
+            renderAchievements();
+        }
+
+        // Gallery
+        function renderGallery() {
+            const list = document.getElementById('gallery_list');
+            list.innerHTML = '';
+            (currentData.gallery || []).forEach((g, idx) => {
+                const div = document.createElement('div');
+                div.className = 'repeat-item';
+                div.innerHTML = `
+                    <div class="repeat-item-header">
+                        <span>Foto Galeri #${idx + 1}</span>
+                        <button type="button" class="btn-delete-item" onclick="removeGalleryItem(${idx})"><i data-lucide="trash-2"></i> Hapus</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Judul Overlay</label>
+                            <input type="text" value="${g.title}" oninput="currentData.gallery[${idx}].title = this.value">
+                        </div>
+                        <div class="form-group">
+                            <label>Caption Lengkap</label>
+                            <input type="text" value="${g.caption}" oninput="currentData.gallery[${idx}].caption = this.value">
+                        </div>
+                        <div class="form-group" style="justify-content:center;">
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin-top:24px;">
+                                <input type="checkbox" ${g.tall ? 'checked' : ''} onchange="currentData.gallery[${idx}].tall = this.checked">
+                                <span>Tampilan Vertikal Tinggi (Tall Masonry)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>File Foto</label>
+                        <div class="upload-field">
+                            <img id="gal_prev_${idx}" class="preview-thumb" src="${g.image}">
+                            <div>
+                                <div class="upload-btn-wrap">
+                                    <button class="btn-upload"><i data-lucide="upload"></i> Upload Foto</button>
+                                    <input type="file" accept="image/*" onchange="uploadItemImage(this, (url) => { currentData.gallery[${idx}].image = url; document.getElementById('gal_prev_${idx}').src = url; })">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+        function addGalleryItem() {
+            if (!currentData.gallery) currentData.gallery = [];
+            currentData.gallery.push({
+                title: "Aktivitas Baru",
+                caption: "Keterangan dokumentasi kegiatan Farhan Hilal",
+                image: "assets/img/gal-1.svg",
+                tall: false
+            });
+            renderGallery();
+        }
+        function removeGalleryItem(idx) {
+            currentData.gallery.splice(idx, 1);
+            renderGallery();
+        }
+
+        // Image Cropper & Fit Engine
+        let cropper = null;
+        let cropCallback = null;
+        let cropTargetFile = null;
+
+        function openCropModal(imageSrc, callback, defaultRatio = 3/4) {
+            cropCallback = callback;
+            const modal = document.getElementById('cropModal');
+            const targetImg = document.getElementById('cropImageTarget');
+            targetImg.src = imageSrc;
+
+            modal.classList.add('active');
+
+            if (cropper) {
+                cropper.destroy();
+            }
+
+            setTimeout(() => {
+                cropper = new Cropper(targetImg, {
+                    aspectRatio: defaultRatio,
+                    viewMode: 1,
+                    autoCropArea: 0.95,
+                    responsive: true,
+                    restore: false,
+                    guides: true,
+                    center: true,
+                    highlight: false,
+                    cropBoxMovable: true,
+                    cropBoxResizable: true,
+                    toggleDragModeOnDblclick: false,
+                });
+                lucide.createIcons();
+            }, 100);
+        }
+
+        function setCropRatio(ratio, btn) {
+            if (cropper) {
+                cropper.setAspectRatio(ratio);
+            }
+            document.querySelectorAll('.btn-aspect').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        function closeCropModal() {
+            const modal = document.getElementById('cropModal');
+            modal.classList.remove('active');
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            cropCallback = null;
+        }
+
+        async function applyAndUploadCroppedImage() {
+            if (!cropper || !cropCallback) return;
+
+            // Get high resolution cropped canvas
+            const canvas = cropper.getCroppedCanvas({
+                maxWidth: 1600,
+                maxHeight: 1600,
+                fillColor: '#0d203a',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+
+            canvas.toBlob(async (blob) => {
+                const formData = new FormData();
+                const filename = 'photo_' + Date.now() + '.jpg';
+                formData.append('file', blob, filename);
+
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const resData = await res.json();
+                    if (resData.success) {
+                        cropCallback(resData.url);
+                        showToast('Foto berhasil disesuaikan & diunggah!');
+                    } else {
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+                        cropCallback(dataUrl);
+                        showToast('Foto disesuaikan (Mode Offline)!');
+                    }
+                } catch (e) {
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+                    cropCallback(dataUrl);
+                    showToast('Foto disesuaikan (Mode Offline)!');
+                }
+                closeCropModal();
+            }, 'image/jpeg', 0.92);
+        }
+
+        // Upload Helper with Interactive Cropper
+        function handleImageUpload(input, hiddenId, previewId, aspect = 3/4) {
+            if (!input.files || !input.files[0]) return;
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                openCropModal(e.target.result, (savedUrl) => {
+                    document.getElementById(hiddenId).value = savedUrl;
+                    document.getElementById(previewId).src = savedUrl;
+                }, aspect);
+                input.value = ''; // reset so same file can be chosen again
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadItemImage(input, callback, aspect = NaN) {
+            if (!input.files || !input.files[0]) return;
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                openCropModal(e.target.result, (savedUrl) => {
+                    callback(savedUrl);
+                }, aspect);
+                input.value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function handleCvUpload(input) {
+            if (!input.files || !input.files[0]) return;
+            const file = input.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const resData = await res.json();
+                if (resData.success) {
+                    document.getElementById('cv_pdfPath').value = resData.url;
+                    if (!currentData.cv) currentData.cv = {};
+                    currentData.cv.pdfPath = resData.url;
+                    showToast('File CV PDF berhasil diperbarui!');
+                } else {
+                    showToast('Gagal mengunggah file CV.');
+                }
+            } catch (e) {
+                showToast('Fitur upload file aktif pada mode server.');
+            }
+        }
+
+        function readFileAsDataURL(file, callback) {
+            const reader = new FileReader();
+            reader.onload = (e) => callback(e.target.result);
+            reader.readAsDataURL(file);
+        }
+
+        function handleLogoUpload(input) {
+            if (!input.files || !input.files[0]) return;
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64Data = e.target.result;
+                document.getElementById('branding_logo_preview').src = base64Data;
+                document.getElementById('branding_logoUrl').value = base64Data;
+                
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            filename: 'logo_' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9_.-]/g, '_'),
+                            data: base64Data
+                        })
+                    });
+                    const resData = await res.json();
+                    if (resData.success) {
+                        document.getElementById('branding_logoUrl').value = resData.url;
+                        document.getElementById('branding_logo_preview').src = resData.url;
+                        showToast('Logo berhasil diunggah! Klik Simpan Perubahan.');
+                    }
+                } catch(err) {
+                    showToast('Logo tersimpan (Mode Offline)! Klik Simpan Perubahan.');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetLogoToDefault() {
+            document.getElementById('branding_logoUrl').value = '';
+            document.getElementById('branding_logo_preview').src = '';
+            showToast('Logo diatur kembali ke inisial FH. Klik Simpan Perubahan!');
+        }
+
+        // Save All Changes
+        document.getElementById('btnSaveData').addEventListener('click', async () => {
+            // Gather values
+            if (!currentData.branding) currentData.branding = {};
+            currentData.branding.logoUrl = document.getElementById('branding_logoUrl').value;
+            currentData.branding.logoBadge = document.getElementById('branding_logoBadge').value;
+            currentData.branding.logoText = document.getElementById('branding_logoText').value;
+            currentData.branding.logoSub = document.getElementById('branding_logoSub').value;
+
+            currentData.hero.greeting = document.getElementById('hero_greeting').value;
+            currentData.hero.name = document.getElementById('hero_name').value;
+            currentData.hero.title = document.getElementById('hero_title').value;
+            currentData.hero.education = document.getElementById('hero_education').value;
+            currentData.hero.description = document.getElementById('hero_description').value;
+            currentData.hero.portraitImage = document.getElementById('hero_portraitImage').value;
+
+            currentData.about.intro = document.getElementById('about_intro').value;
+            currentData.about.name = document.getElementById('about_name').value;
+            currentData.about.education = document.getElementById('about_education').value;
+            currentData.about.institution = document.getElementById('about_institution').value;
+            currentData.about.location = document.getElementById('about_location').value;
+            currentData.about.aboutImage = document.getElementById('about_aboutImage').value;
+
+            currentData.education.institution = document.getElementById('edu_institution').value;
+            currentData.education.degree = document.getElementById('edu_degree').value;
+            currentData.education.major = document.getElementById('edu_major').value;
+            currentData.education.department = document.getElementById('edu_department').value;
+            currentData.education.previousEducation = document.getElementById('edu_previousEducation').value;
+
+            currentData.experience.company = document.getElementById('exp_company').value;
+            currentData.experience.branch = document.getElementById('exp_branch').value;
+            currentData.experience.position = document.getElementById('exp_position').value;
+            currentData.experience.period = document.getElementById('exp_period').value;
+
+            currentData.contact.email = document.getElementById('contact_email').value;
+            currentData.contact.location = document.getElementById('contact_location').value;
+            currentData.contact.linkedin = document.getElementById('contact_linkedin').value;
+            currentData.contact.instagram = document.getElementById('contact_instagram').value;
+
+            // Save to LocalStorage for fallback
+            localStorage.setItem('farhan_portfolio_data', JSON.stringify(currentData));
+
+            // Save to Backend API
+            try {
+                const res = await fetch('/api/data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+                if (res.ok) {
+                    showToast('Semua perubahan berhasil disimpan secara permanen!');
+                } else {
+                    showToast('Tersimpan di penyimpanan lokal browser!');
+                }
+            } catch (err) {
+                showToast('Tersimpan di penyimpanan lokal browser!');
+            }
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3500);
+        }
+
+        // Tab Switching
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+                document.getElementById('page-title').textContent = tab.querySelector('span').textContent;
+            });
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', loadSiteData);
+    </script>
+</body>
+</html>

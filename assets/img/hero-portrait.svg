@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 550" width="100%" height="100%">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1b31" />
+      <stop offset="50%" stop-color="#102746" />
+      <stop offset="100%" stop-color="#183860" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C788" />
+      <stop offset="50%" stop-color="#C6A15B" />
+      <stop offset="100%" stop-color="#997534" />
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="450" height="550" rx="20" fill="url(#heroGrad)" />
+  <rect width="450" height="550" rx="20" fill="url(#grid)" />
+  
+  <!-- Subtle architectural accent lines -->
+  <line x1="40" y1="510" x2="410" y2="510" stroke="#C6A15B" stroke-width="1" stroke-opacity="0.3" />
+  <circle cx="225" cy="205" r="145" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.4" />
+  <circle cx="225" cy="205" r="130" fill="#0c1d35" stroke="url(#goldGrad)" stroke-width="2" />
+
+  <!-- Executive Silhouette Portrait -->
+  <g transform="translate(225, 205)">
+    <!-- Head & Hair -->
+    <path d="M -38 -55 C -38 -95, 38 -95, 38 -55 C 38 -30, 32 -10, 0 8 C -32 -10, -38 -30, -38 -55 Z" fill="#E2E8F0" />
+    <!-- Hair neat cut -->
+    <path d="M -40 -60 C -38 -105, 38 -105, 40 -60 C 25 -70, -25 -70, -40 -60 Z" fill="#1e293b" />
+    <!-- Neck -->
+    <path d="M -16 5 L 16 5 L 20 40 L -20 40 Z" fill="#CBD5E1" />
+    <!-- Collar & Tie -->
+    <path d="M -22 35 L 0 65 L 22 35 L 10 32 L 0 45 L -10 32 Z" fill="#FFFFFF" />
+    <polygon points="0,48 -8,52 -5,95 0,105 5,95 8,52" fill="url(#goldGrad)" />
+    <!-- Suit Jacket -->
+    <path d="M -85 125 C -75 55, -45 35, -20 40 L -6 95 L 6 95 L 20 40 C 45 35, 75 55, 85 125 Z" fill="#102746" />
+    <path d="M -85 125 C -80 75, -50 48, -20 40 L -12 75 L -45 125 Z" fill="#1e3a5f" />
+    <path d="M 85 125 C 80 75, 50 48, 20 40 L 12 75 L 45 125 Z" fill="#1e3a5f" />
+  </g>
+
+  <!-- Gold Emblem Badge -->
+  <g transform="translate(225, 395)">
+    <rect x="-180" y="0" width="360" height="90" rx="14" fill="#0a192e" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <text x="0" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="19" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">FARHAN HILAL</text>
+    <text x="0" y="54" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#C6A15B" text-anchor="middle" letter-spacing="0.5">D4 MANAJEMEN KEUANGAN SEKTOR PUBLIK</text>
+    <text x="0" y="73" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#94A3B8" text-anchor="middle">Politeknik Negeri Lhokseumawe</text>
+  </g>
+</svg>

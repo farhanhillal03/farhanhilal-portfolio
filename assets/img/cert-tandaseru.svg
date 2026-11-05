@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="100%" height="100%">
+  <rect width="800" height="560" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="4" />
+  <rect x="25" y="25" width="750" height="510" fill="none" stroke="#102746" stroke-width="2" />
+  <rect x="35" y="35" width="730" height="490" fill="none" stroke="#C6A15B" stroke-width="1.5" stroke-dasharray="6 3" />
+  
+  <!-- Corner Ornaments -->
+  <polygon points="35,35 75,35 35,75" fill="#C6A15B" fill-opacity="0.2" />
+  <polygon points="765,35 725,35 765,75" fill="#C6A15B" fill-opacity="0.2" />
+  <polygon points="35,525 75,525 35,485" fill="#C6A15B" fill-opacity="0.2" />
+  <polygon points="765,525 725,525 765,485" fill="#C6A15B" fill-opacity="0.2" />
+
+  <!-- Issuing Header -->
+  <text x="400" y="90" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#64748B" text-anchor="middle" letter-spacing="3">TANDASERU INDONESIA</text>
+  <line x1="300" y1="105" x2="500" y2="105" stroke="#C6A15B" stroke-width="1" />
+
+  <!-- Main Title -->
+  <text x="400" y="160" font-family="'Inter', sans-serif" font-weight="800" font-size="28" fill="#102746" text-anchor="middle" letter-spacing="2">PROFESSIONAL DEVELOPMENT CERTIFICATE</text>
+  
+  <text x="400" y="210" font-family="'Inter', sans-serif" font-style="italic" font-size="14" fill="#64748B" text-anchor="middle">This is proudly presented to</text>
+  
+  <!-- Recipient Name -->
+  <text x="400" y="270" font-family="'Inter', sans-serif" font-weight="800" font-size="34" fill="#102746" text-anchor="middle">Farhan Hilal</text>
+  <line x1="250" y1="290" x2="550" y2="290" stroke="#C6A15B" stroke-width="2" />
+
+  <!-- Description -->
+  <text x="400" y="340" font-family="'Inter', sans-serif" font-size="15" fill="#334155" text-anchor="middle">National Youth Leadership & Professional Competency</text>
+  <text x="400" y="370" font-family="'Inter', sans-serif" font-size="13" fill="#64748B" text-anchor="middle">Validated Credential • Issued Year 2024</text>
+
+  <!-- Gold Seal Emulation -->
+  <circle cx="400" cy="445" r="38" fill="#C6A15B" />
+  <circle cx="400" cy="445" r="32" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3 2" />
+  <text x="400" y="450" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">VERIFIED</text>
+  
+  <!-- Signatures Mockup -->
+  <g transform="translate(140, 430)">
+    <line x1="0" y1="40" x2="160" y2="40" stroke="#102746" stroke-width="1" />
+    <text x="80" y="58" font-family="'Inter', sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Authorized Signature</text>
+  </g>
+  <g transform="translate(500, 430)">
+    <line x1="0" y1="40" x2="160" y2="40" stroke="#102746" stroke-width="1" />
+    <text x="80" y="58" font-family="'Inter', sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Institution Registrar</text>
+  </g>
+</svg>

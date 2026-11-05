@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <rect width="400" height="300" fill="#0f2c59" />
+  <circle cx="200" cy="120" r="55" fill="none" stroke="#C6A15B" stroke-width="2" stroke-dasharray="4 4" />
+  <rect x="175" y="95" width="50" height="50" rx="8" fill="#FFFFFF" fill-opacity="0.1" />
+  <polygon points="200,85 225,100 175,100" fill="#C6A15B" />
+  <rect x="182" y="105" width="7" height="25" fill="#FFFFFF" />
+  <rect x="196" y="105" width="8" height="25" fill="#FFFFFF" />
+  <rect x="211" y="105" width="7" height="25" fill="#FFFFFF" />
+  <text x="200" y="215" font-family="'Inter', sans-serif" font-weight="600" font-size="15" fill="#FFFFFF" text-anchor="middle">ATM Card Security Operations</text>
+  <text x="200" y="240" font-family="'Inter', sans-serif" font-weight="400" font-size="12" fill="#C6A15B" text-anchor="middle">Card blocking verification & client support</text>
+  <text x="200" y="270" font-family="'Inter', sans-serif" font-weight="500" font-size="10" fill="rgba(255,255,255,0.5)" text-anchor="middle">BTN KCS LHOKSEUMAWE</text>
+</svg>

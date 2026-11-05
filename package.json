@@ -1,0 +1,19 @@
+{
+  "name": "farhan-portfolio",
+  "version": "1.0.0",
+  "description": "Farhan Hilal – Portfolio & CV",
+  "main": "index.html",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "serve": "node dev-server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "cv",
+    "finance",
+    "farhan-hilal"
+  ],
+  "author": "Farhan Hilal",
+  "license": "ISC"
+}

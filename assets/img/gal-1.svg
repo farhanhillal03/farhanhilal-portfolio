@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" width="100%" height="100%">
+  <rect width="400" height="450" fill="#102746" rx="12" />
+  <circle cx="200" cy="200" r="45" fill="none" stroke="#C6A15B" stroke-width="2" />
+  <polygon points="200,180 215,205 185,205" fill="#C6A15B" />
+  <text x="200" y="270" font-family="'Inter', sans-serif" font-weight="700" font-size="17" fill="#FFFFFF" text-anchor="middle">Professional Portrait</text>
+  <text x="200" y="295" font-family="'Inter', sans-serif" font-weight="400" font-size="12" fill="#C6A15B" text-anchor="middle">Farhan Hilal – Corporate Readiness</text>
+</svg>

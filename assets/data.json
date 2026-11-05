@@ -1,0 +1,275 @@
+{
+  "branding": {
+    "logoUrl": "",
+    "logoText": "Farhan Hilal",
+    "logoSub": "",
+    "logoBadge": ""
+  },
+  "about": {
+    "aboutImage": "assets/img/photo_1793804768133.jpg",
+    "education": "D4 Manajemen Keuangan Sektor Publik",
+    "email": "farhan.hillal03@gmail.com",
+    "institution": "Politeknik Negeri Lhokseumawe",
+    "interests": [
+      "Public Sector Financial Management",
+      "Financial Administration",
+      "Accounting",
+      "Banking Operations",
+      "Regional Financial Management",
+      "Good Governance",
+      "Financial Reporting"
+    ],
+    "intro": "I am a graduate of D4 Manajemen Keuangan Sektor Publik (Public Sector Financial Management) from Politeknik Negeri Lhokseumawe. I am passionate about public sector financial management, banking operations, and good governance. With a strong academic foundation and hands-on internship experience, I am eager to contribute my skills and knowledge to organizations that value integrity, professionalism, and continuous improvement.",
+    "location": "Lhokseumawe, Aceh, Indonesia",
+    "name": "Farhan Hilal"
+  },
+  "achievements": [
+    {
+      "organizer": "Perwakilan Bank Indonesia Lhokseumawe",
+      "rank": "Juara 1",
+      "title": "Content Reels – Pase Fest"
+    },
+    {
+      "organizer": "Scouting Organization",
+      "rank": "Juara 1",
+      "title": "Pionering Hiking tingkat Kota Lhokseumawe"
+    },
+    {
+      "organizer": "City-level Competition",
+      "rank": "Juara 1",
+      "title": "PBB Paskibra tingkat Kota Lhokseumawe"
+    }
+  ],
+  "certificates": [
+    {
+      "image": "assets/img/cert-btn.svg",
+      "issuer": "PT Bank Tabungan Negara",
+      "title": "BTN Internship Certificate",
+      "year": "2024"
+    },
+    {
+      "image": "assets/img/cert-toefl.svg",
+      "issuer": "Language Testing Institution",
+      "title": "TOEFL Certificate – Score 400",
+      "year": "2024"
+    },
+    {
+      "image": "assets/img/cert-bem.svg",
+      "issuer": "Politeknik Negeri Lhokseumawe",
+      "title": "BEM Certificate 2023–2024",
+      "year": "2024"
+    },
+    {
+      "image": "assets/img/cert-tandaseru.svg",
+      "issuer": "TandaSeru",
+      "title": "TandaSeru Certificate",
+      "year": "2024"
+    },
+    {
+      "image": "assets/img/cert-dev.svg",
+      "issuer": "Various Institutions",
+      "title": "Professional Development Certificate",
+      "year": "2024"
+    }
+  ],
+  "contact": {
+    "email": "farhan.hillal03@gmail.com",
+    "instagram": "@farhanhilal",
+    "linkedin": "linkedin.com/in/farhanhilal",
+    "location": "Lhokseumawe, Aceh, Indonesia"
+  },
+  "cv": {
+    "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf"
+  },
+  "education": {
+    "degree": "D4 Degree",
+    "department": "Jurusan Bisnis",
+    "institution": "Politeknik Negeri Lhokseumawe",
+    "major": "D4 Manajemen Keuangan Sektor Publik",
+    "previousEducation": "SMA Negeri 1 Lhokseumawe — Peminatan Ilmu Pengetahuan Sosial (IPS)",
+    "subjects": [
+      "Public Sector Accounting",
+      "Public Financial Management",
+      "Regional Financial Management",
+      "Budgeting and Financial Reporting",
+      "Financial Analysis",
+      "Government Accounting"
+    ]
+  },
+  "experience": {
+    "activities": [
+      {
+        "caption": "Customer Service & Account Administration – BTN KCS Lhokseumawe",
+        "image": "assets/img/activity-1.svg",
+        "title": "Customer Service & Account Administration"
+      },
+      {
+        "caption": "ATM Card Security Operations & Card Blocking Verification",
+        "image": "assets/img/activity-2.svg",
+        "title": "ATM Card Security Operations"
+      },
+      {
+        "caption": "KPR Housing Loan Account & Administrative Process Support",
+        "image": "assets/img/activity-3.svg",
+        "title": "KPR Housing Loan Processing"
+      },
+      {
+        "caption": "Deposit Documentation & Incoming Transfer Reconciliation",
+        "image": "assets/img/activity-4.svg",
+        "title": "Transfer Reconciliation"
+      }
+    ],
+    "badge": "Banking Internship",
+    "branch": "BTN KCS Lhokseumawe",
+    "company": "PT Bank Tabungan Negara (Persero) Tbk",
+    "period": "March – August",
+    "position": "Banking Intern",
+    "responsibilities": [
+      "Assisted Customer Service operations and customer administration.",
+      "Supported savings account and passbook opening procedures.",
+      "Assisted customers with ATM card blocking requests.",
+      "Helped with KPR-related account and administrative processes.",
+      "Assisted deposit transactions and supporting documentation.",
+      "Helped prepare reports concerning fund transfers that had not yet been received."
+    ]
+  },
+  "gallery": [
+    {
+      "caption": "Professional Portrait – Farhan Hilal",
+      "image": "assets/img/gal-1.svg",
+      "tall": true,
+      "title": "Professional Portrait"
+    },
+    {
+      "caption": "Banking Internship – PT Bank Tabungan Negara (Persero) Tbk",
+      "image": "assets/img/gal-2.svg",
+      "tall": false,
+      "title": "Banking Internship (BTN KCS)"
+    },
+    {
+      "caption": "Organizational Activities – BEM Politeknik Negeri Lhokseumawe",
+      "image": "assets/img/gal-3.svg",
+      "tall": false,
+      "title": "Organizational Leadership (BEM)"
+    },
+    {
+      "caption": "Community Service Programs – Program Desa Binaan",
+      "image": "assets/img/gal-4.svg",
+      "tall": true,
+      "title": "Desa Binaan Community Service"
+    },
+    {
+      "caption": "National Forums – Delegation at Forum FKMPI Nasional",
+      "image": "assets/img/gal-5.svg",
+      "tall": false,
+      "title": "Forum FKMPI Nasional Delegation"
+    },
+    {
+      "caption": "Award Ceremonies – Juara 1 Bank Indonesia Pase Fest",
+      "image": "assets/img/gal-6.svg",
+      "tall": true,
+      "title": "Juara 1 Bank Indonesia Pase Fest"
+    },
+    {
+      "caption": "Certificates & Official Achievements",
+      "image": "assets/img/gal-7.svg",
+      "tall": false,
+      "title": "Certificates & Achievements"
+    },
+    {
+      "caption": "Academic Life & Campus Activities – Politeknik Negeri Lhokseumawe",
+      "image": "assets/img/gal-8.svg",
+      "tall": false,
+      "title": "Campus Life – Politeknik Negeri Lhokseumawe"
+    }
+  ],
+  "hero": {
+    "description": "A motivated finance graduate with an academic background in public sector financial management, accounting, regional finance, and financial administration. Experienced in banking operations, organizational activities, and administrative responsibilities. Passionate about contributing to an organization through analytical thinking, integrity, and continuous learning.",
+    "education": "D4 Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
+    "greeting": "Hello, I'm",
+    "name": "Farhan Hilal",
+    "portraitImage": "assets/img/photo_1793804609031.jpg",
+    "title": "Public Sector Finance Graduate"
+  },
+  "organizations": [
+    {
+      "activities": [
+        "Participated in Desa Binaan programs.",
+        "Organized Go To School activities.",
+        "Represented the institution at Forum FKMPI Nasional.",
+        "Coordinated organizational activities and teamwork."
+      ],
+      "name": "Badan Eksekutif Mahasiswa (BEM)",
+      "period": "2023 – 2024",
+      "position": "Ketua Divisi"
+    },
+    {
+      "activities": [
+        "Participated in educational programs about drug prevention.",
+        "Collaborated with BNN in awareness activities."
+      ],
+      "name": "PIK-R",
+      "period": "2019 – 2020",
+      "position": "Ketua Departemen Napza"
+    }
+  ],
+  "projects": [
+    {
+      "category": "Research",
+      "description": "Research on regional financial performance using panel data analysis and EViews 12.",
+      "id": "thesis",
+      "image": "assets/img/thumb-thesis.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+      "subtitle": "Pengaruh Pendapatan Asli Daerah, Belanja Modal, Dana Perimbangan, dan SiLPA terhadap Kinerja Keuangan Pemerintah Daerah di Aceh Tahun 2020–2024",
+      "title": "Undergraduate Thesis Research"
+    },
+    {
+      "category": "Analysis",
+      "description": "Academic analysis of regional financial data, government budgets, and financial performance.",
+      "id": "analysis",
+      "image": "assets/img/thumb-analysis.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+      "subtitle": "Regional Budget Evaluation, Fiscal Autonomy & Revenue Effectiveness",
+      "title": "Financial Analysis"
+    },
+    {
+      "category": "Internship",
+      "description": "Practical experience in banking administration, customer service, and KPR operations.",
+      "id": "banking",
+      "image": "assets/img/thumb-internship.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+      "subtitle": "PT Bank Tabungan Negara (Persero) Tbk – KCS Lhokseumawe",
+      "title": "Banking Internship"
+    },
+    {
+      "category": "Administration",
+      "description": "Academic and practical work related to financial management and reporting.",
+      "id": "admin",
+      "image": "assets/img/thumb-admin.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+      "subtitle": "Government Accounting Standards & Public Sector Ledger Bookkeeping",
+      "title": "Financial Administration"
+    }
+  ],
+  "skills": {
+    "professional": [
+      "Communication",
+      "Teamwork",
+      "Problem Solving",
+      "Attention to Detail",
+      "Time Management",
+      "Adaptability"
+    ],
+    "technical": [
+      "Basic Accounting",
+      "Financial Administration",
+      "Public Sector Financial Management",
+      "Financial Reporting",
+      "Financial Analysis",
+      "Microsoft Excel",
+      "Microsoft Word",
+      "Microsoft PowerPoint",
+      "EViews 12"
+    ]
+  }
+}

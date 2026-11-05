@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <rect width="500" height="240" fill="#13376d" />
+  <!-- Chart / Graph Lines in background -->
+  <polyline points="40,200 120,150 200,170 280,100 360,130 460,50" fill="none" stroke="#C6A15B" stroke-width="3" stroke-linecap="round" />
+  <polyline points="40,210 120,180 200,195 280,140 360,165 460,110" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+  <circle cx="280" cy="100" r="5" fill="#C6A15B" />
+  <circle cx="460" cy="50" r="6" fill="#C6A15B" />
+  <rect x="30" y="30" width="8" height="40" fill="#C6A15B" rx="4" />
+  <text x="50" y="55" font-family="'Inter', sans-serif" font-weight="700" font-size="18" fill="#FFFFFF">Banking Operations</text>
+  <text x="50" y="78" font-family="'Inter', sans-serif" font-weight="400" font-size="12" fill="rgba(255,255,255,0.7)">BTN KCS Lhokseumawe Administration & KPR</text>
+</svg>
