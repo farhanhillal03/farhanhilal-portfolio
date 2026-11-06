@@ -824,18 +824,66 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const successMsg = currentLang === 'en'
-        ? `Thank you for your message, ${name}! Farhan will review and reply promptly.`
-        : `Terima kasih atas pesan Anda, ${name}! Farhan akan segera menanggapi.`;
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const origBtnHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Mengirim...</span>`;
 
-      showFormStatus(successMsg, 'success');
-      showToast(currentLang === 'en' ? 'Message sent successfully!' : 'Pesan berhasil dikirim!', 'success');
-      contactForm.reset();
+      const recipient = 'farhan.hillal03@gmail.com';
+      showFormStatus(currentLang === 'en' ? 'Sending message to Farhan...' : 'Sedang mengirim pesan ke email Farhan...', 'info');
 
-      setTimeout(() => {
-        if (formStatus) formStatus.style.display = 'none';
-      }, 6000);
+      // Send via FormSubmit AJAX service
+      fetch(`https://formsubmit.co/ajax/${recipient}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          _subject: `[Portofolio Farhan Hilal] ${subject} - dari ${name}`,
+          message: message,
+          _replyto: email
+        })
+      })
+      .then(res => res.json())
+      .then(resData => {
+        const successMsg = currentLang === 'en'
+          ? `Thank you, ${name}! Your email has been delivered directly to Farhan's inbox (${recipient}).`
+          : `Terima kasih, ${name}! Pesan dan tawaran kerja Anda telah terkirim langsung ke email Farhan (${recipient}).`;
+        showFormStatus(successMsg, 'success');
+        showToast(currentLang === 'en' ? 'Email sent successfully!' : 'Email berhasil terkirim!', 'success');
+        contactForm.reset();
+      })
+      .catch(err => {
+        // Fallback: Open mailto directly
+        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Halo Farhan Hilal,\n\nNama: ${name}\nEmail: ${email}\n\nPesan / Tawaran:\n${message}`)}`;
+        window.location.href = mailtoLink;
+        showFormStatus(currentLang === 'en'
+          ? `Opening your email client to send to ${recipient}...`
+          : `Membuka aplikasi email Anda untuk mengirim pesan ke ${recipient}...`, 'success');
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origBtnHtml;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      });
     });
+
+    // Kirim via WhatsApp Button
+    const btnSendWa = document.getElementById('btn-send-wa');
+    if (btnSendWa) {
+      btnSendWa.addEventListener('click', () => {
+        const name = contactForm.querySelector('#name').value.trim();
+        const subject = contactForm.querySelector('#subject').value.trim();
+        const message = contactForm.querySelector('#message').value.trim();
+        const waNum = '6282315099447';
+        const msgText = `Halo Farhan Hilal, perkenalkan saya ${name || 'Rekruter'}.\nPerihal: ${subject || 'Tawaran Kerja / Diskusi'}\n\n${message || 'Saya tertarik dengan profil dan portofolio Anda.'}`;
+        const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(msgText)}`;
+        window.open(waUrl, '_blank');
+      });
+    }
   }
 
   function showFormStatus(message, type) {
@@ -972,6 +1020,19 @@ async function syncPortfolioData() {
       if (el) { el.href = igUrl; el.textContent = `@${igHandle}`; }
       const fEl = document.getElementById('footer-instagram-link');
       if (fEl) fEl.href = igUrl;
+    }
+    if (data.contact.whatsapp) {
+      const cleanWa = data.contact.whatsapp.replace(/[^0-9]/g, '');
+      const intlWa = cleanWa.startsWith('0') ? '62' + cleanWa.slice(1) : cleanWa;
+      const waLink = document.getElementById('contact-whatsapp-link');
+      if (waLink) {
+        waLink.href = `https://wa.me/${intlWa}`;
+        waLink.textContent = data.contact.whatsapp;
+      }
+      const footerWa = document.getElementById('footer-whatsapp-link');
+      if (footerWa) {
+        footerWa.href = `https://wa.me/${intlWa}`;
+      }
     }
   }
 

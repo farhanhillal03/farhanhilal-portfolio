@@ -59,8 +59,85 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // API Routes
+  // API Routes — file upload (supports both JSON base64 AND multipart/form-data)
   if (pathname === '/api/upload' && req.method === 'POST') {
+    const contentType = req.headers['content-type'] || '';
+
+    // Branch A: multipart/form-data (from Cropper.js / FormData)
+    if (contentType.includes('multipart/form-data')) {
+      const boundary = contentType.split('boundary=')[1];
+      if (!boundary) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Missing multipart boundary' }));
+        return;
+      }
+
+      const chunks = [];
+      req.on('data', chunk => chunks.push(chunk));
+      req.on('end', () => {
+        const fullBuffer = Buffer.concat(chunks);
+        const boundaryBuf = Buffer.from('--' + boundary);
+
+        // Find the file data between boundaries
+        let start = -1;
+        let headerEnd = -1;
+        for (let i = 0; i < fullBuffer.length - 3; i++) {
+          if (fullBuffer.slice(i, i + boundaryBuf.length).equals(boundaryBuf)) {
+            if (start === -1) {
+              // Skip past \r\n after boundary
+              start = i + boundaryBuf.length + 2;
+            }
+          }
+        }
+
+        // Find end of headers (\r\n\r\n)
+        for (let i = start; i < fullBuffer.length - 3; i++) {
+          if (fullBuffer[i] === 0x0d && fullBuffer[i+1] === 0x0a && fullBuffer[i+2] === 0x0d && fullBuffer[i+3] === 0x0a) {
+            headerEnd = i + 4;
+            break;
+          }
+        }
+
+        if (headerEnd === -1) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Malformed multipart data' }));
+          return;
+        }
+
+        // Extract headers to get filename
+        const headerStr = fullBuffer.slice(start, headerEnd).toString('utf-8');
+        let origFilename = 'upload_' + Date.now() + '.jpg';
+        const fnameMatch = headerStr.match(/filename="([^"]+)"/);
+        if (fnameMatch) origFilename = fnameMatch[1];
+
+        // Find the closing boundary
+        const closingBoundary = Buffer.from('\r\n--' + boundary);
+        let dataEnd = fullBuffer.length;
+        for (let i = headerEnd; i < fullBuffer.length - closingBoundary.length; i++) {
+          if (fullBuffer.slice(i, i + closingBoundary.length).equals(closingBoundary)) {
+            dataEnd = i;
+            break;
+          }
+        }
+
+        const fileData = fullBuffer.slice(headerEnd, dataEnd);
+        const safeFilename = origFilename.replace(/[^a-zA-Z0-9_.-]/g, '_');
+        const savePath = path.join(BASE_DIR, 'assets', 'img', safeFilename);
+
+        fs.writeFile(savePath, fileData, err => {
+          if (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Gagal menyimpan file upload' }));
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true, url: `assets/img/${safeFilename}`, filename: safeFilename }));
+        });
+      });
+      return;
+    }
+
+    // Branch B: JSON base64 upload (from logo upload & other base64 uploads)
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => {
@@ -68,9 +145,15 @@ const server = http.createServer((req, res) => {
         const payload = JSON.parse(body);
         const filename = (payload.filename || `upload_${Date.now()}.png`).replace(/[^a-zA-Z0-9_.-]/g, '_');
         const rawData = payload.data || '';
-        const base64Data = rawData.replace(/^data:image\/\w+;base64,/, '');
+        const base64Data = rawData.replace(/^data:(image|application)\/[\w+.-]+;base64,/, '');
         const buffer = Buffer.from(base64Data, 'base64');
-        const savePath = path.join(BASE_DIR, 'assets', 'img', filename);
+
+        // Determine save directory based on file type
+        const ext = path.extname(filename).toLowerCase();
+        const saveDir = (ext === '.pdf') 
+          ? path.join(BASE_DIR, 'assets', 'docs') 
+          : path.join(BASE_DIR, 'assets', 'img');
+        const savePath = path.join(saveDir, filename);
         
         fs.writeFile(savePath, buffer, err => {
           if (err) {
@@ -78,8 +161,9 @@ const server = http.createServer((req, res) => {
             res.end(JSON.stringify({ error: 'Gagal menyimpan file upload' }));
             return;
           }
+          const urlPrefix = (ext === '.pdf') ? 'assets/docs' : 'assets/img';
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ success: true, url: `assets/img/${filename}`, filename }));
+          res.end(JSON.stringify({ success: true, url: `${urlPrefix}/${filename}`, filename }));
         });
       } catch (e) {
         res.writeHead(400, { 'Content-Type': 'application/json' });

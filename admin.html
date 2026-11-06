@@ -1082,19 +1082,23 @@
                             <input type="email" id="contact_email">
                         </div>
                         <div class="form-group">
-                            <label>Lokasi Domisili</label>
-                            <input type="text" id="contact_location">
+                            <label>Nomor WhatsApp (Contoh: 082315099447)</label>
+                            <input type="text" id="contact_whatsapp" placeholder="082315099447">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
+                            <label>Lokasi Domisili</label>
+                            <input type="text" id="contact_location">
+                        </div>
+                        <div class="form-group">
                             <label>LinkedIn Profile / URL</label>
                             <input type="text" id="contact_linkedin">
                         </div>
-                        <div class="form-group">
-                            <label>Instagram Handle / URL</label>
-                            <input type="text" id="contact_instagram">
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram Handle / URL</label>
+                        <input type="text" id="contact_instagram">
                     </div>
                 </div>
             </div>
@@ -1149,37 +1153,237 @@
     </div>
 
     <script>
+        const DEFAULT_SITE_DATA = {
+          "branding": { "logoUrl": "", "logoText": "Farhan Hilal", "logoSub": "", "logoBadge": "FH" },
+          "about": {
+            "aboutImage": "assets/img/photo_1793804768133.jpg",
+            "education": "D4 Manajemen Keuangan Sektor Publik",
+            "email": "farhan.hillal03@gmail.com",
+            "institution": "Politeknik Negeri Lhokseumawe",
+            "interests": ["Public Sector Financial Management", "Financial Administration", "Accounting", "Banking Operations", "Regional Financial Management", "Good Governance", "Financial Reporting"],
+            "intro": "I am a graduate of D4 Manajemen Keuangan Sektor Publik (Public Sector Financial Management) from Politeknik Negeri Lhokseumawe. I am passionate about public sector financial management, banking operations, and good governance. With a strong academic foundation and hands-on internship experience, I am eager to contribute my skills and knowledge to organizations that value integrity, professionalism, and continuous improvement.",
+            "location": "Lhokseumawe, Aceh, Indonesia",
+            "name": "Farhan Hilal"
+          },
+          "achievements": [
+            { "organizer": "Perwakilan Bank Indonesia Lhokseumawe", "rank": "Juara 1", "title": "Content Reels – Pase Fest" },
+            { "organizer": "Scouting Organization", "rank": "Juara 1", "title": "Pionering Hiking tingkat Kota Lhokseumawe" },
+            { "organizer": "City-level Competition", "rank": "Juara 1", "title": "PBB Paskibra tingkat Kota Lhokseumawe" }
+          ],
+          "certificates": [
+            { "image": "assets/img/cert-btn.svg", "issuer": "PT Bank Tabungan Negara", "title": "BTN Internship Certificate", "year": "2024" },
+            { "image": "assets/img/cert-toefl.svg", "issuer": "Language Testing Institution", "title": "TOEFL Certificate – Score 400", "year": "2024" },
+            { "image": "assets/img/cert-bem.svg", "issuer": "Politeknik Negeri Lhokseumawe", "title": "BEM Certificate 2023–2024", "year": "2024" },
+            { "image": "assets/img/cert-tandaseru.svg", "issuer": "TandaSeru", "title": "TandaSeru Certificate", "year": "2024" },
+            { "image": "assets/img/cert-dev.svg", "issuer": "Various Institutions", "title": "Professional Development Certificate", "year": "2024" }
+          ],
+          "contact": {
+            "email": "farhan.hillal03@gmail.com",
+            "whatsapp": "082315099447",
+            "instagram": "@farhanhilal",
+            "linkedin": "linkedin.com/in/farhanhilal",
+            "location": "Lhokseumawe, Aceh, Indonesia"
+          },
+          "cv": { "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf" },
+          "education": {
+            "degree": "D4 Degree",
+            "department": "Jurusan Bisnis",
+            "institution": "Politeknik Negeri Lhokseumawe",
+            "major": "D4 Manajemen Keuangan Sektor Publik",
+            "previousEducation": "SMA Negeri 1 Lhokseumawe — Peminatan Ilmu Pengetahuan Sosial (IPS)",
+            "subjects": ["Public Sector Accounting", "Public Financial Management", "Regional Financial Management", "Budgeting and Financial Reporting", "Financial Analysis", "Government Accounting"]
+          },
+          "experience": {
+            "activities": [
+              { "caption": "Customer Service & Account Administration – BTN KCS Lhokseumawe", "image": "assets/img/activity-1.svg", "title": "Customer Service & Account Administration" },
+              { "caption": "ATM Card Security Operations & Card Blocking Verification", "image": "assets/img/activity-2.svg", "title": "ATM Card Security Operations" },
+              { "caption": "KPR Housing Loan Account & Administrative Process Support", "image": "assets/img/activity-3.svg", "title": "KPR Housing Loan Processing" },
+              { "caption": "Deposit Documentation & Incoming Transfer Reconciliation", "image": "assets/img/activity-4.svg", "title": "Transfer Reconciliation" }
+            ],
+            "badge": "Banking Internship",
+            "branch": "BTN KCS Lhokseumawe",
+            "company": "PT Bank Tabungan Negara (Persero) Tbk",
+            "period": "March – August",
+            "position": "Banking Intern",
+            "responsibilities": [
+              "Assisted Customer Service operations and customer administration.",
+              "Supported savings account and passbook opening procedures.",
+              "Assisted customers with ATM card blocking requests.",
+              "Helped with KPR-related account and administrative processes.",
+              "Assisted deposit transactions and supporting documentation.",
+              "Helped prepare reports concerning fund transfers that had not yet been received."
+            ]
+          },
+          "gallery": [
+            { "caption": "Professional Portrait – Farhan Hilal", "image": "assets/img/gal-1.svg", "tall": true, "title": "Professional Portrait" },
+            { "caption": "Banking Internship – PT Bank Tabungan Negara (Persero) Tbk", "image": "assets/img/gal-2.svg", "tall": false, "title": "Banking Internship (BTN KCS)" },
+            { "caption": "Organizational Activities – BEM Politeknik Negeri Lhokseumawe", "image": "assets/img/gal-3.svg", "tall": false, "title": "Organizational Leadership (BEM)" },
+            { "caption": "Community Service Programs – Program Desa Binaan", "image": "assets/img/gal-4.svg", "tall": true, "title": "Desa Binaan Community Service" },
+            { "caption": "National Forums – Delegation at Forum FKMPI Nasional", "image": "assets/img/gal-5.svg", "tall": false, "title": "Forum FKMPI Nasional Delegation" },
+            { "caption": "Award Ceremonies – Juara 1 Bank Indonesia Pase Fest", "image": "assets/img/gal-6.svg", "tall": true, "title": "Juara 1 Bank Indonesia Pase Fest" },
+            { "caption": "Certificates & Official Achievements", "image": "assets/img/gal-7.svg", "tall": false, "title": "Certificates & Achievements" },
+            { "caption": "Academic Life & Campus Activities – Politeknik Negeri Lhokseumawe", "image": "assets/img/gal-8.svg", "tall": false, "title": "Campus Life – Politeknik Negeri Lhokseumawe" }
+          ],
+          "hero": {
+            "description": "A motivated finance graduate with an academic background in public sector financial management, accounting, regional finance, and financial administration. Experienced in banking operations, organizational activities, and administrative responsibilities. Passionate about contributing to an organization through analytical thinking, integrity, and continuous learning.",
+            "education": "D4 Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
+            "greeting": "Hello, I'm",
+            "name": "Farhan Hilal",
+            "portraitImage": "assets/img/photo_1793804609031.jpg",
+            "title": "Public Sector Finance Graduate"
+          },
+          "organizations": [
+            {
+              "activities": ["Participated in Desa Binaan programs.", "Organized Go To School activities.", "Represented the institution at Forum FKMPI Nasional.", "Coordinated organizational activities and teamwork."],
+              "name": "Badan Eksekutif Mahasiswa (BEM)",
+              "period": "2023 – 2024",
+              "position": "Ketua Divisi"
+            },
+            {
+              "activities": ["Participated in educational programs about drug prevention.", "Collaborated with BNN in awareness activities."],
+              "name": "PIK-R",
+              "period": "2019 – 2020",
+              "position": "Ketua Departemen Napza"
+            }
+          ],
+          "projects": [
+            {
+              "category": "Research",
+              "description": "Research on regional financial performance using panel data analysis and EViews 12.",
+              "id": "thesis",
+              "image": "assets/img/thumb-thesis.svg",
+              "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+              "subtitle": "Pengaruh Pendapatan Asli Daerah, Belanja Modal, Dana Perimbangan, dan SiLPA terhadap Kinerja Keuangan Pemerintah Daerah di Aceh Tahun 2020–2024",
+              "title": "Undergraduate Thesis Research"
+            },
+            {
+              "category": "Analysis",
+              "description": "Academic analysis of regional financial data, government budgets, and financial performance.",
+              "id": "analysis",
+              "image": "assets/img/thumb-analysis.svg",
+              "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+              "subtitle": "Regional Budget Evaluation, Fiscal Autonomy & Revenue Effectiveness",
+              "title": "Financial Analysis"
+            },
+            {
+              "category": "Internship",
+              "description": "Practical experience in banking administration, customer service, and KPR operations.",
+              "id": "banking",
+              "image": "assets/img/thumb-internship.svg",
+              "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+              "subtitle": "PT Bank Tabungan Negara (Persero) Tbk – KCS Lhokseumawe",
+              "title": "Banking Internship"
+            },
+            {
+              "category": "Administration",
+              "description": "Academic and practical work related to financial management and reporting.",
+              "id": "admin",
+              "image": "assets/img/thumb-admin.svg",
+              "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf",
+              "subtitle": "Government Accounting Standards & Public Sector Ledger Bookkeeping",
+              "title": "Financial Administration"
+            }
+          ],
+          "skills": {
+            "professional": ["Communication", "Teamwork", "Problem Solving", "Attention to Detail", "Time Management", "Adaptability"],
+            "technical": ["Basic Accounting", "Financial Administration", "Public Sector Financial Management", "Financial Reporting", "Financial Analysis", "Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "EViews 12"]
+          }
+        };
+
         let currentData = {};
+
+        function ensureDataStructure() {
+            if (!currentData) currentData = {};
+            if (!currentData.branding) currentData.branding = {};
+            if (!currentData.hero) currentData.hero = {};
+            if (!currentData.about) currentData.about = {};
+            if (!Array.isArray(currentData.about.interests)) currentData.about.interests = [];
+            if (!currentData.education) currentData.education = {};
+            if (!Array.isArray(currentData.education.subjects)) currentData.education.subjects = [];
+            if (!currentData.experience) currentData.experience = {};
+            if (!Array.isArray(currentData.experience.responsibilities)) currentData.experience.responsibilities = [];
+            if (!Array.isArray(currentData.experience.activities)) currentData.experience.activities = [];
+            if (!Array.isArray(currentData.projects)) currentData.projects = [];
+            if (!Array.isArray(currentData.certificates)) currentData.certificates = [];
+            if (!Array.isArray(currentData.organizations)) currentData.organizations = [];
+            if (!Array.isArray(currentData.achievements)) currentData.achievements = [];
+            if (!currentData.skills) currentData.skills = {};
+            if (!Array.isArray(currentData.skills.technical)) currentData.skills.technical = [];
+            if (!Array.isArray(currentData.skills.professional)) currentData.skills.professional = [];
+            if (!Array.isArray(currentData.gallery)) currentData.gallery = [];
+            if (!currentData.cv) currentData.cv = {};
+            if (!currentData.contact) currentData.contact = {};
+        }
 
         // Fetch Initial Data
         async function loadSiteData() {
+            let loaded = null;
+
+            // 1. Try local storage first (unsaved edits in browser)
             try {
-                const res = await fetch('/api/data');
-                if (res.ok) {
-                    currentData = await res.json();
-                } else {
-                    currentData = JSON.parse(localStorage.getItem('farhan_portfolio_data') || '{}');
+                const local = localStorage.getItem('farhan_portfolio_data');
+                if (local) {
+                    const parsed = JSON.parse(local);
+                    if (parsed && (parsed.hero || parsed.about)) {
+                        loaded = parsed;
+                    }
                 }
-            } catch (e) {
-                currentData = JSON.parse(localStorage.getItem('farhan_portfolio_data') || '{}');
+            } catch (e) {}
+
+            // 2. Try Node.js dev server API
+            if (!loaded) {
+                try {
+                    const res = await fetch('/api/data');
+                    if (res.ok) {
+                        loaded = await res.json();
+                    }
+                } catch (e) {}
             }
+
+            // 3. Try fetching static data.json
+            if (!loaded) {
+                try {
+                    const res = await fetch('assets/data.json');
+                    if (res.ok) {
+                        loaded = await res.json();
+                    }
+                } catch (e) {}
+            }
+
+            // 4. Merge with embedded DEFAULT_SITE_DATA to ensure 100% full fields
+            currentData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+            if (loaded) {
+                Object.assign(currentData, loaded);
+                if (loaded.hero) Object.assign(currentData.hero, loaded.hero);
+                if (loaded.about) Object.assign(currentData.about, loaded.about);
+                if (loaded.education) Object.assign(currentData.education, loaded.education);
+                if (loaded.experience) Object.assign(currentData.experience, loaded.experience);
+                if (loaded.contact) Object.assign(currentData.contact, loaded.contact);
+                if (loaded.branding) Object.assign(currentData.branding, loaded.branding);
+                if (loaded.skills) Object.assign(currentData.skills, loaded.skills);
+                if (Array.isArray(loaded.projects) && loaded.projects.length) currentData.projects = loaded.projects;
+                if (Array.isArray(loaded.certificates) && loaded.certificates.length) currentData.certificates = loaded.certificates;
+                if (Array.isArray(loaded.organizations) && loaded.organizations.length) currentData.organizations = loaded.organizations;
+                if (Array.isArray(loaded.achievements) && loaded.achievements.length) currentData.achievements = loaded.achievements;
+                if (Array.isArray(loaded.gallery) && loaded.gallery.length) currentData.gallery = loaded.gallery;
+            }
+
+            ensureDataStructure();
             populateForms();
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
         function populateForms() {
-            if (!currentData.hero) return;
+            ensureDataStructure();
 
             // Branding & Logo
-            if (currentData.branding) {
-                document.getElementById('branding_logoUrl').value = currentData.branding.logoUrl || '';
-                if (currentData.branding.logoUrl) {
-                    document.getElementById('branding_logo_preview').src = currentData.branding.logoUrl;
-                }
-                document.getElementById('branding_logoBadge').value = currentData.branding.logoBadge || 'FH';
-                document.getElementById('branding_logoText').value = currentData.branding.logoText || 'Farhan Hilal';
-                document.getElementById('branding_logoSub').value = currentData.branding.logoSub || 'Public Finance & Banking';
+            document.getElementById('branding_logoUrl').value = currentData.branding.logoUrl || '';
+            if (currentData.branding.logoUrl) {
+                document.getElementById('branding_logo_preview').src = currentData.branding.logoUrl;
             }
+            document.getElementById('branding_logoBadge').value = currentData.branding.logoBadge || 'FH';
+            document.getElementById('branding_logoText').value = currentData.branding.logoText || 'Farhan Hilal';
+            document.getElementById('branding_logoSub').value = currentData.branding.logoSub || 'Public Finance & Banking';
 
             // Hero
             document.getElementById('hero_greeting').value = currentData.hero.greeting || '';
@@ -1236,10 +1440,11 @@
             renderGallery();
 
             // CV
-            document.getElementById('cv_pdfPath').value = currentData.cv ? currentData.cv.pdfPath : 'assets/docs/Farhan_Hilal_CV.pdf';
+            document.getElementById('cv_pdfPath').value = currentData.cv ? (currentData.cv.pdfPath || 'assets/docs/Farhan_Hilal_CV.pdf') : 'assets/docs/Farhan_Hilal_CV.pdf';
 
             // Contact
             document.getElementById('contact_email').value = currentData.contact.email || '';
+            document.getElementById('contact_whatsapp').value = currentData.contact.whatsapp || '082315099447';
             document.getElementById('contact_location').value = currentData.contact.location || '';
             document.getElementById('contact_linkedin').value = currentData.contact.linkedin || '';
             document.getElementById('contact_instagram').value = currentData.contact.instagram || '';
@@ -1722,30 +1927,33 @@
 
             canvas.toBlob(async (blob) => {
                 const formData = new FormData();
-                const filename = 'photo_' + Date.now() + '.jpg';
-                formData.append('file', blob, filename);
+                const safeFilename = 'photo_' + Date.now() + '.jpg';
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.90);
+
+                // Immediate preview callback
+                cropCallback(dataUrl);
 
                 try {
                     const res = await fetch('/api/upload', {
                         method: 'POST',
-                        body: formData
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            filename: safeFilename,
+                            data: dataUrl
+                        })
                     });
                     const resData = await res.json();
                     if (resData.success) {
                         cropCallback(resData.url);
                         showToast('Foto berhasil disesuaikan & diunggah!');
                     } else {
-                        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-                        cropCallback(dataUrl);
                         showToast('Foto disesuaikan (Mode Offline)!');
                     }
                 } catch (e) {
-                    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-                    cropCallback(dataUrl);
                     showToast('Foto disesuaikan (Mode Offline)!');
                 }
                 closeCropModal();
-            }, 'image/jpeg', 0.92);
+            }, 'image/jpeg', 0.90);
         }
 
         // Upload Helper with Interactive Cropper
@@ -1763,15 +1971,34 @@
             reader.readAsDataURL(file);
         }
 
+        // Upload Item Image (Certificates, Projects, Gallery, Activities) - Direct & Reliable
         function uploadItemImage(input, callback, aspect = NaN) {
             if (!input.files || !input.files[0]) return;
             const file = input.files[0];
             const reader = new FileReader();
-            reader.onload = (e) => {
-                openCropModal(e.target.result, (savedUrl) => {
-                    callback(savedUrl);
-                }, aspect);
-                input.value = '';
+            reader.onload = async (e) => {
+                const base64Data = e.target.result;
+                const safeName = 'item_' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9_.-]/g, '_');
+
+                // Immediate update in UI
+                callback(base64Data);
+
+                // Try uploading to server
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename: safeName, data: base64Data })
+                    });
+                    const resData = await res.json();
+                    if (resData.success) {
+                        callback(resData.url);
+                        showToast('Foto berhasil diunggah! Klik Simpan Perubahan.');
+                        return;
+                    }
+                } catch(err) {}
+
+                showToast('Foto berhasil dipilih! Klik Simpan Perubahan.');
             };
             reader.readAsDataURL(file);
         }
@@ -1779,26 +2006,33 @@
         async function handleCvUpload(input) {
             if (!input.files || !input.files[0]) return;
             const file = input.files[0];
-            const formData = new FormData();
-            formData.append('file', file);
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64Data = e.target.result;
+                const filename = 'Farhan_Hilal_CV_' + Date.now() + '.pdf';
 
-            try {
-                const res = await fetch('/api/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-                const resData = await res.json();
-                if (resData.success) {
-                    document.getElementById('cv_pdfPath').value = resData.url;
-                    if (!currentData.cv) currentData.cv = {};
-                    currentData.cv.pdfPath = resData.url;
-                    showToast('File CV PDF berhasil diperbarui!');
-                } else {
-                    showToast('Gagal mengunggah file CV.');
-                }
-            } catch (e) {
-                showToast('Fitur upload file aktif pada mode server.');
-            }
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename, data: base64Data })
+                    });
+                    const resData = await res.json();
+                    if (resData.success) {
+                        document.getElementById('cv_pdfPath').value = resData.url;
+                        if (!currentData.cv) currentData.cv = {};
+                        currentData.cv.pdfPath = resData.url;
+                        showToast('File CV PDF berhasil diperbarui!');
+                        return;
+                    }
+                } catch (e) {}
+
+                document.getElementById('cv_pdfPath').value = 'assets/docs/' + filename;
+                if (!currentData.cv) currentData.cv = {};
+                currentData.cv.pdfPath = 'assets/docs/' + filename;
+                showToast('File CV dipilih! Klik Simpan Perubahan.');
+            };
+            reader.readAsDataURL(file);
         }
 
         function readFileAsDataURL(file, callback) {
@@ -1846,8 +2080,9 @@
 
         // Save All Changes
         document.getElementById('btnSaveData').addEventListener('click', async () => {
+            ensureDataStructure();
+
             // Gather values
-            if (!currentData.branding) currentData.branding = {};
             currentData.branding.logoUrl = document.getElementById('branding_logoUrl').value;
             currentData.branding.logoBadge = document.getElementById('branding_logoBadge').value;
             currentData.branding.logoText = document.getElementById('branding_logoText').value;
@@ -1879,6 +2114,7 @@
             currentData.experience.period = document.getElementById('exp_period').value;
 
             currentData.contact.email = document.getElementById('contact_email').value;
+            currentData.contact.whatsapp = document.getElementById('contact_whatsapp').value;
             currentData.contact.location = document.getElementById('contact_location').value;
             currentData.contact.linkedin = document.getElementById('contact_linkedin').value;
             currentData.contact.instagram = document.getElementById('contact_instagram').value;
