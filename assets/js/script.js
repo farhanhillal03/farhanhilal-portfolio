@@ -1322,6 +1322,18 @@ async function syncPortfolioData() {
         footerWa.href = `https://wa.me/${intlWa}`;
       }
     }
+    if (data.contact.github) {
+      const gUrl = data.contact.github.startsWith('http') ? data.contact.github : `https://${data.contact.github}`;
+      const cGit = document.getElementById('contact-github-link');
+      if (cGit) {
+        cGit.href = gUrl;
+        cGit.textContent = data.contact.github.replace(/^https?:\/\//, '');
+      }
+      const fGit = document.getElementById('footer-github-link');
+      if (fGit) fGit.href = gUrl;
+      const hGit = document.getElementById('hero-github-link');
+      if (hGit) hGit.href = gUrl;
+    }
   }
 
   // Re-bind interactive events for dynamically generated elements

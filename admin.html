@@ -1134,9 +1134,15 @@
                             <input type="text" id="contact_linkedin">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Instagram Handle / URL</label>
-                        <input type="text" id="contact_instagram">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Instagram Handle / URL</label>
+                            <input type="text" id="contact_instagram" placeholder="@farhanhilal">
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub Profile / URL</label>
+                            <input type="text" id="contact_github" placeholder="https://github.com/farhanhillal03">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1222,6 +1228,7 @@
             "whatsapp": "082315099447",
             "instagram": "@farhanhilal",
             "linkedin": "linkedin.com/in/farhanhilal",
+            "github": "https://github.com/farhanhillal03",
             "location": "Lhokseumawe, Aceh, Indonesia"
           },
           "cv": { "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf" },
@@ -1483,6 +1490,7 @@
             document.getElementById('contact_location').value = currentData.contact.location || '';
             document.getElementById('contact_linkedin').value = currentData.contact.linkedin || '';
             document.getElementById('contact_instagram').value = currentData.contact.instagram || '';
+            document.getElementById('contact_github').value = currentData.contact.github || 'https://github.com/farhanhillal03';
         }
 
         // Tag Badges Helper
@@ -2192,6 +2200,7 @@
             currentData.contact.location = document.getElementById('contact_location').value;
             currentData.contact.linkedin = document.getElementById('contact_linkedin').value;
             currentData.contact.instagram = document.getElementById('contact_instagram').value;
+            currentData.contact.github = document.getElementById('contact_github').value;
 
             // Save to LocalStorage for fallback
             localStorage.setItem('farhan_portfolio_data', JSON.stringify(currentData));

@@ -5,18 +5,6 @@
     "logoSub": "Public Finance & Banking",
     "logoBadge": "FH"
   },
-  "hero": {
-    "greeting": "Portofolio Eksekutif",
-    "greetingEn": "Executive Portfolio",
-    "name": "Farhan Hilal",
-    "title": "Spesialis Keuangan Sektor Publik • Operasional Perbankan",
-    "titleEn": "Public Sector Finance Specialist • Banking Operations",
-    "education": "D4 Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
-    "educationEn": "D4 Public Sector Financial Management | Politeknik Negeri Lhokseumawe",
-    "description": "Lulusan Sarjana Terapan Keuangan Sektor Publik dengan kompetensi mendalam dalam tata kelola anggaran daerah, akuntansi pemerintahan, analisis ekonometrika panel (EViews 12), serta operasional perbankan di PT Bank Tabungan Negara (Persero) Tbk. Berdedikasi untuk memberikan kontribusi nyata berlandaskan integritas, profesionalisme, dan analisis data presisi.",
-    "descriptionEn": "Applied Bachelor (D4) graduate in Public Sector Financial Management with in-depth competencies in regional budget governance, government accounting, panel econometric analysis (EViews 12), and retail banking operations at PT Bank Tabungan Negara (Persero) Tbk. Dedicated to delivering measurable impact grounded in integrity, professionalism, and empirical precision.",
-    "portraitImage": "assets/img/photo_1793804609031.jpg"
-  },
   "about": {
     "name": "Farhan Hilal",
     "intro": "Lulusan Sarjana Terapan (D4) Manajemen Keuangan Sektor Publik dari Politeknik Negeri Lhokseumawe dengan fokus keahlian pada akuntansi pemerintahan, tata kelola keuangan daerah, dan operasional perbankan. Memiliki rekam jejak praktis melalui magang 6 bulan di PT Bank Tabungan Negara (Persero) Tbk KCS Lhokseumawe, menangani administrasi customer service, verifikasi kartu ATM, berkas KPR, hingga rekonsiliasi transfer dana.",
@@ -46,146 +34,30 @@
       "Financial Reporting & BKU"
     ]
   },
-  "education": {
-    "institution": "Politeknik Negeri Lhokseumawe",
-    "institutionEn": "Politeknik Negeri Lhokseumawe",
-    "degree": "Sarjana Terapan (D4)",
-    "degreeEn": "Applied Bachelor Degree (D4)",
-    "major": "Manajemen Keuangan Sektor Publik",
-    "majorEn": "Public Sector Financial Management",
-    "department": "Jurusan Bisnis",
-    "departmentEn": "Business Department",
-    "period": "2020 – 2024",
-    "previousEducation": "Sekolah Menengah Atas (SMA) — Peminatan Ilmu Pengetahuan Alam (IPA)",
-    "sma": {
-      "school": "Sekolah Menengah Atas (SMA)",
-      "schoolEn": "Senior High School (SMA)",
-      "major": "Peminatan Ilmu Pengetahuan Alam (IPA)",
-      "majorEn": "Natural Sciences (IPA) Concentration",
-      "period": "2019 – 2022",
-      "city": "Kota Lhokseumawe, Aceh",
-      "cityEn": "Lhokseumawe City, Aceh",
-      "activities": "Aktif Berorganisasi (Paskibra & PIK-R)",
-      "activitiesEn": "Active in Leadership & Student Orgs (Paskibra & PIK-R)",
-      "description": "Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.",
-      "descriptionEn": "Built strong foundational knowledge in natural sciences, mathematical logic, and active leadership through youth counseling and city-level flag hoisting squads (Paskibra)."
-    },
-    "subjects": [
-      "Akuntansi Sektor Publik",
-      "Manajemen Keuangan Sektor Publik",
-      "Pengelolaan Keuangan Daerah",
-      "Penganggaran & Pelaporan Keuangan",
-      "Analisis Kinerja Keuangan",
-      "Akuntansi Pemerintahan (SAP)",
-      "Ekonometrika & Regresi Data Panel"
-    ],
-    "subjectsEn": [
-      "Public Sector Accounting",
-      "Public Financial Management",
-      "Regional Financial Governance",
-      "Budgeting & Financial Reporting",
-      "Financial Performance Analysis",
-      "Government Accounting Standards",
-      "Econometrics & Panel Data Regression"
-    ]
-  },
-  "experience": {
-    "badge": "Banking Operations Intern",
-    "badgeEn": "Banking Operations Intern",
-    "company": "PT Bank Tabungan Negara (Persero) Tbk",
-    "branch": "Kantor Cabang Syariah (BTN KCS Lhokseumawe)",
-    "branchEn": "Sharia Branch Office (BTN KCS Lhokseumawe)",
-    "position": "Banking Intern",
-    "positionEn": "Banking Intern",
-    "period": "Maret – Agustus (6 Bulan)",
-    "periodEn": "March – August (6 Months)",
-    "responsibilities": [
-      "Membantu operasional Customer Service dalam pembukaan buku tabungan baru (Tabungan Batara & iB Syariah) serta kepatuhan prosedur KYC (Know Your Customer).",
-      "Menangani proses permintaan pemblokiran kartu ATM nasabah yang hilang/tertelan secara cepat dan akurat dengan verifikasi data keamanan berlapis.",
-      "Mendukung verifikasi berkas dan pengarsipan administratif nasabah terkait Kredit Pemilikan Rumah (KPR) sesuai standar tata laksana BTN.",
-      "Membantu verifikasi dokumen transaksi deposito nasabah serta menyusun laporan rekonsiliasi transfer dana masuk yang belum terkonfirmasi."
-    ],
-    "responsibilitiesEn": [
-      "Supported Customer Service frontliners in new savings account openings (Batara & iB Sharia) in full compliance with Know Your Customer (KYC) guidelines.",
-      "Processed urgent customer ATM card blocking requests with speed, accuracy, and multi-tier security verification protocols.",
-      "Assisted customer dossier verification and administrative archiving for subsidized and commercial KPR housing loan portfolios.",
-      "Verified time deposit certificates and compiled daily administrative reconciliation reports for unconfirmed incoming fund transfers."
-    ],
-    "activities": [
-      {
-        "caption": "Customer Service & Account Administration – BTN KCS Lhokseumawe",
-        "image": "assets/img/activity-1.svg",
-        "title": "Customer Service & Account Administration"
-      },
-      {
-        "caption": "ATM Card Security Operations & Card Blocking Verification",
-        "image": "assets/img/activity-2.svg",
-        "title": "ATM Card Security Operations"
-      },
-      {
-        "caption": "KPR Housing Loan Account & Administrative Process Support",
-        "image": "assets/img/activity-3.svg",
-        "title": "KPR Housing Loan Processing"
-      },
-      {
-        "caption": "Deposit Documentation & Incoming Transfer Reconciliation",
-        "image": "assets/img/activity-4.svg",
-        "title": "Transfer Reconciliation"
-      }
-    ]
-  },
-  "projects": [
+  "achievements": [
     {
-      "id": "thesis",
-      "title": "Skripsi Riset Ekonometrika",
-      "titleEn": "Econometric Thesis Research",
-      "category": "Riset Ekonometrika",
-      "categoryEn": "Econometrics & Research",
-      "subtitle": "Pengaruh Pendapatan Asli Daerah, Belanja Modal, Dana Perimbangan, dan SiLPA terhadap Kinerja Keuangan Pemerintah Daerah di Aceh Tahun 2020–2024",
-      "subtitleEn": "The Effect of PAD, Capital Expenditure, Balance Funds, and SiLPA on Local Government Financial Performance in Aceh 2020–2024",
-      "description": "Penelitian ekonometrika komprehensif terhadap 23 Kabupaten/Kota di Provinsi Aceh menggunakan regresi data panel (EViews 12), menguji Chow Test, Hausman Test, dan Lagrange Multiplier.",
-      "descriptionEn": "Comprehensive panel data econometric regression across all 23 regencies and cities in Aceh Province utilizing EViews 12, Chow Test, and Hausman Test diagnostics.",
-      "image": "assets/img/thumb-thesis.svg",
-      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+      "rank": "Juara 1",
+      "rankEn": "1st Place Winner",
+      "title": "Content Reels Competition – Pase Fest",
+      "titleEn": "Content Reels Competition – Pase Fest",
+      "organizer": "Perwakilan Bank Indonesia Lhokseumawe",
+      "organizerEn": "Bank Indonesia Representative Office Lhokseumawe"
     },
     {
-      "id": "analysis",
-      "title": "Analisis Keuangan Daerah",
-      "titleEn": "Regional Financial Analysis",
-      "category": "Analisis Anggaran",
-      "categoryEn": "Fiscal Analysis",
-      "subtitle": "Evaluasi Anggaran Daerah, Kemandirian Fiskal & Efektivitas PAD",
-      "subtitleEn": "Regional Budget Evaluation, Fiscal Autonomy & Revenue Effectiveness",
-      "description": "Analisis akademik terhadap data realisasi APBK, rasio efektivitas pendapatan asli daerah, dan derajat desentralisasi fiskal pemerintah daerah di Aceh.",
-      "descriptionEn": "Academic evaluation of regional budget realization datasets (APBK), fiscal autonomy ratios, and expenditure efficiency indicators across Aceh local governments.",
-      "image": "assets/img/thumb-analysis.svg",
-      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+      "rank": "Juara 1",
+      "rankEn": "1st Place Winner",
+      "title": "Pionering Hiking Kepanduan",
+      "titleEn": "Scout Pioneering & Hiking Competition",
+      "organizer": "Kwartir Cabang Gerakan Pramuka Kota Lhokseumawe",
+      "organizerEn": "Lhokseumawe City Scout Federation"
     },
     {
-      "id": "banking",
-      "title": "Magang Operasional Perbankan",
-      "titleEn": "Banking Operations Internship",
-      "category": "Perbankan",
-      "categoryEn": "Banking Operations",
-      "subtitle": "PT Bank Tabungan Negara (Persero) Tbk – KCS Lhokseumawe",
-      "subtitleEn": "PT Bank Tabungan Negara (Persero) Tbk – Sharia Branch Office",
-      "description": "Praktik langsung pelayanan nasabah, kepatuhan KYC, pemblokiran kartu ATM, administrasi berkas KPR, dan rekonsiliasi transfer dana.",
-      "descriptionEn": "Hands-on practical experience in front-office customer service, KYC compliance, ATM security card blocking, mortgage (KPR) documentation, and reconciliation.",
-      "image": "assets/img/thumb-internship.svg",
-      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
-    },
-    {
-      "id": "admin",
-      "title": "Administrasi Keuangan Publik",
-      "titleEn": "Public Financial Administration",
-      "category": "Administrasi Keuangan",
-      "categoryEn": "Public Administration",
-      "subtitle": "Standar Akuntansi Pemerintahan (SAP) & Pembukuan Buku Kas Umum",
-      "subtitleEn": "Government Accounting Standards (SAP) & Cash Ledger Bookkeeping",
-      "description": "Penyusunan pembukuan buku kas umum (BKU), verifikasi kelengkapan bukti SPJ, dan pelaporan keuangan berbasis akrual sesuai SAP.",
-      "descriptionEn": "Compilation of general cash ledger (BKU) entries, SPJ accountability proof verification, and accrual-based government financial reporting compliance.",
-      "image": "assets/img/thumb-admin.svg",
-      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+      "rank": "Juara 1",
+      "rankEn": "1st Place Winner",
+      "title": "Lomba Baris-Berbaris (PBB) Paskibra",
+      "titleEn": "Paskibra Marching & Drill Competition (PBB)",
+      "organizer": "Tingkat Kota Lhokseumawe",
+      "organizerEn": "Lhokseumawe City Level"
     }
   ],
   "certificates": [
@@ -199,7 +71,7 @@
     },
     {
       "image": "assets/img/item_1793994173935_WhatsApp_Image_2026-11-07_at_02.42.40.jpeg",
-      "title": "Sertifikat Kemahiran Bahasa Inggris TOEFL (Skor 400)",
+      "title": "Sertifikat Kemahiran Bahasa Inggris TOEFL",
       "titleEn": "TOEFL English Proficiency Certificate (Score 400)",
       "issuer": "Lembaga Bahasa Resmi",
       "issuerEn": "Official Language Testing Center",
@@ -294,6 +166,117 @@
       "year": "2019"
     }
   ],
+  "contact": {
+    "email": "farhan.hillal03@gmail.com",
+    "instagram": "@_farrhnn03",
+    "linkedin": "https://www.linkedin.com/in/farhan-hilal-81a272323",
+    "location": "Lhokseumawe, Aceh, Indonesia",
+    "whatsapp": "082315099447",
+    "github": "https://github.com/farhanhillal03"
+  },
+  "cv": {
+    "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf"
+  },
+  "education": {
+    "institution": "Politeknik Negeri Lhokseumawe",
+    "institutionEn": "Politeknik Negeri Lhokseumawe",
+    "degree": "Sarjana Terapan (D4)",
+    "degreeEn": "Applied Bachelor Degree (D4)",
+    "major": "Manajemen Keuangan Sektor Publik",
+    "majorEn": "Public Sector Financial Management",
+    "department": "Jurusan Bisnis",
+    "departmentEn": "Business Department",
+    "period": "2020 – 2024",
+    "previousEducation": "Sekolah Menengah Atas (SMA) — Peminatan Ilmu Pengetahuan Alam (IPA)",
+    "sma": {
+      "school": "Sekolah Menengah Atas (SMA)",
+      "schoolEn": "Senior High School (SMA)",
+      "major": "Peminatan Ilmu Pengetahuan Alam (IPA)",
+      "majorEn": "Natural Sciences (IPA) Concentration",
+      "period": "2019 – 2022",
+      "city": "Kota Lhokseumawe, Aceh",
+      "cityEn": "Lhokseumawe City, Aceh",
+      "activities": "Aktif Berorganisasi (Paskibra & PIK-R)",
+      "activitiesEn": "Active in Leadership & Student Orgs (Paskibra & PIK-R)",
+      "description": "Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.",
+      "descriptionEn": "Built strong foundational knowledge in natural sciences, mathematical logic, and active leadership through youth counseling and city-level flag hoisting squads (Paskibra)."
+    },
+    "subjects": [
+      "Akuntansi Sektor Publik",
+      "Manajemen Keuangan Sektor Publik",
+      "Pengelolaan Keuangan Daerah",
+      "Penganggaran & Pelaporan Keuangan",
+      "Analisis Kinerja Keuangan",
+      "Akuntansi Pemerintahan (SAP)",
+      "Ekonometrika & Regresi Data Panel"
+    ],
+    "subjectsEn": [
+      "Public Sector Accounting",
+      "Public Financial Management",
+      "Regional Financial Governance",
+      "Budgeting & Financial Reporting",
+      "Financial Performance Analysis",
+      "Government Accounting Standards",
+      "Econometrics & Panel Data Regression"
+    ]
+  },
+  "experience": {
+    "badge": "Banking Operations Intern",
+    "badgeEn": "Banking Operations Intern",
+    "company": "PT Bank Tabungan Negara (Persero) Tbk",
+    "branch": "Kantor Cabang Syariah (BTN KCS Lhokseumawe)",
+    "branchEn": "Sharia Branch Office (BTN KCS Lhokseumawe)",
+    "position": "Banking Intern",
+    "positionEn": "Banking Intern",
+    "period": "Maret – Agustus (6 Bulan)",
+    "periodEn": "March – August (6 Months)",
+    "responsibilities": [
+      "Membantu operasional Customer Service dalam pembukaan buku tabungan baru (Tabungan Batara & iB Syariah) serta kepatuhan prosedur KYC (Know Your Customer).",
+      "Menangani proses permintaan pemblokiran kartu ATM nasabah yang hilang/tertelan secara cepat dan akurat dengan verifikasi data keamanan berlapis.",
+      "Mendukung verifikasi berkas dan pengarsipan administratif nasabah terkait Kredit Pemilikan Rumah (KPR) sesuai standar tata laksana BTN.",
+      "Membantu verifikasi dokumen transaksi deposito nasabah serta menyusun laporan rekonsiliasi transfer dana masuk yang belum terkonfirmasi."
+    ],
+    "responsibilitiesEn": [
+      "Supported Customer Service frontliners in new savings account openings (Batara & iB Sharia) in full compliance with Know Your Customer (KYC) guidelines.",
+      "Processed urgent customer ATM card blocking requests with speed, accuracy, and multi-tier security verification protocols.",
+      "Assisted customer dossier verification and administrative archiving for subsidized and commercial KPR housing loan portfolios.",
+      "Verified time deposit certificates and compiled daily administrative reconciliation reports for unconfirmed incoming fund transfers."
+    ],
+    "activities": [
+      {
+        "caption": "Customer Service & Account Administration – BTN KCS Lhokseumawe",
+        "image": "assets/img/activity-1.svg",
+        "title": "Customer Service & Account Administration"
+      },
+      {
+        "caption": "ATM Card Security Operations & Card Blocking Verification",
+        "image": "assets/img/activity-2.svg",
+        "title": "ATM Card Security Operations"
+      },
+      {
+        "caption": "KPR Housing Loan Account & Administrative Process Support",
+        "image": "assets/img/activity-3.svg",
+        "title": "KPR Housing Loan Processing"
+      },
+      {
+        "caption": "Deposit Documentation & Incoming Transfer Reconciliation",
+        "image": "assets/img/activity-4.svg",
+        "title": "Transfer Reconciliation"
+      }
+    ]
+  },
+  "hero": {
+    "greeting": "Portofolio Eksekutif",
+    "greetingEn": "Executive Portfolio",
+    "name": "Farhan Hilal",
+    "title": "Spesialis Keuangan Sektor Publik • Operasional Perbankan",
+    "titleEn": "Public Sector Finance Specialist • Banking Operations",
+    "education": "D4 Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
+    "educationEn": "D4 Public Sector Financial Management | Politeknik Negeri Lhokseumawe",
+    "description": "Lulusan Sarjana Terapan Keuangan Sektor Publik dengan kompetensi mendalam dalam tata kelola anggaran daerah, akuntansi pemerintahan, analisis ekonometrika panel (EViews 12), serta operasional perbankan di PT Bank Tabungan Negara (Persero) Tbk. Berdedikasi untuk memberikan kontribusi nyata berlandaskan integritas, profesionalisme, dan analisis data presisi.",
+    "descriptionEn": "Applied Bachelor (D4) graduate in Public Sector Financial Management with in-depth competencies in regional budget governance, government accounting, panel econometric analysis (EViews 12), and retail banking operations at PT Bank Tabungan Negara (Persero) Tbk. Dedicated to delivering measurable impact grounded in integrity, professionalism, and empirical precision.",
+    "portraitImage": "assets/img/photo_1793804609031.jpg"
+  },
   "organizations": [
     {
       "name": "Badan Eksekutif Mahasiswa (BEM)",
@@ -328,32 +311,6 @@
         "Organized youth educational campaigns focused on narcotics awareness and adolescent counseling.",
         "Collaborated extensively with the National Narcotics Board (BNN) in community youth counseling sessions."
       ]
-    }
-  ],
-  "achievements": [
-    {
-      "rank": "Juara 1",
-      "rankEn": "1st Place Winner",
-      "title": "Content Reels Competition – Pase Fest",
-      "titleEn": "Content Reels Competition – Pase Fest",
-      "organizer": "Perwakilan Bank Indonesia Lhokseumawe",
-      "organizerEn": "Bank Indonesia Representative Office Lhokseumawe"
-    },
-    {
-      "rank": "Juara 1",
-      "rankEn": "1st Place Winner",
-      "title": "Pionering Hiking Kepanduan",
-      "titleEn": "Scout Pioneering & Hiking Competition",
-      "organizer": "Kwartir Cabang Gerakan Pramuka Kota Lhokseumawe",
-      "organizerEn": "Lhokseumawe City Scout Federation"
-    },
-    {
-      "rank": "Juara 1",
-      "rankEn": "1st Place Winner",
-      "title": "Lomba Baris-Berbaris (PBB) Paskibra",
-      "titleEn": "Paskibra Marching & Drill Competition (PBB)",
-      "organizer": "Tingkat Kota Lhokseumawe",
-      "organizerEn": "Lhokseumawe City Level"
     }
   ],
   "skills": {
@@ -392,40 +349,94 @@
       "Cross-Functional Team Collaboration"
     ]
   },
+  "projects": [
+    {
+      "id": "thesis",
+      "title": "Skripsi Riset Ekonometrika",
+      "titleEn": "Econometric Thesis Research",
+      "category": "Riset Ekonometrika",
+      "categoryEn": "Econometrics & Research",
+      "subtitle": "Pengaruh Pendapatan Asli Daerah, Belanja Modal, Dana Perimbangan, dan SiLPA terhadap Kinerja Keuangan Pemerintah Daerah di Aceh Tahun 2020–2024",
+      "subtitleEn": "The Effect of PAD, Capital Expenditure, Balance Funds, and SiLPA on Local Government Financial Performance in Aceh 2020–2024",
+      "description": "Penelitian ekonometrika komprehensif terhadap 23 Kabupaten/Kota di Provinsi Aceh menggunakan regresi data panel (EViews 12), menguji Chow Test, Hausman Test, dan Lagrange Multiplier.",
+      "descriptionEn": "Comprehensive panel data econometric regression across all 23 regencies and cities in Aceh Province utilizing EViews 12, Chow Test, and Hausman Test diagnostics.",
+      "image": "assets/img/thumb-thesis.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+    },
+    {
+      "id": "analysis",
+      "title": "Analisis Keuangan Daerah",
+      "titleEn": "Regional Financial Analysis",
+      "category": "Analisis Anggaran",
+      "categoryEn": "Fiscal Analysis",
+      "subtitle": "Evaluasi Anggaran Daerah, Kemandirian Fiskal & Efektivitas PAD",
+      "subtitleEn": "Regional Budget Evaluation, Fiscal Autonomy & Revenue Effectiveness",
+      "description": "Analisis akademik terhadap data realisasi APBK, rasio efektivitas pendapatan asli daerah, dan derajat desentralisasi fiskal pemerintah daerah di Aceh.",
+      "descriptionEn": "Academic evaluation of regional budget realization datasets (APBK), fiscal autonomy ratios, and expenditure efficiency indicators across Aceh local governments.",
+      "image": "assets/img/thumb-analysis.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+    },
+    {
+      "id": "banking",
+      "title": "Magang Operasional Perbankan",
+      "titleEn": "Banking Operations Internship",
+      "category": "Perbankan",
+      "categoryEn": "Banking Operations",
+      "subtitle": "PT Bank Tabungan Negara (Persero) Tbk – KCS Lhokseumawe",
+      "subtitleEn": "PT Bank Tabungan Negara (Persero) Tbk – Sharia Branch Office",
+      "description": "Praktik langsung pelayanan nasabah, kepatuhan KYC, pemblokiran kartu ATM, administrasi berkas KPR, dan rekonsiliasi transfer dana.",
+      "descriptionEn": "Hands-on practical experience in front-office customer service, KYC compliance, ATM security card blocking, mortgage (KPR) documentation, and reconciliation.",
+      "image": "assets/img/thumb-internship.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+    },
+    {
+      "id": "admin",
+      "title": "Administrasi Keuangan Publik",
+      "titleEn": "Public Financial Administration",
+      "category": "Administrasi Keuangan",
+      "categoryEn": "Public Administration",
+      "subtitle": "Standar Akuntansi Pemerintahan (SAP) & Pembukuan Buku Kas Umum",
+      "subtitleEn": "Government Accounting Standards (SAP) & Cash Ledger Bookkeeping",
+      "description": "Penyusunan pembukuan buku kas umum (BKU), verifikasi kelengkapan bukti SPJ, dan pelaporan keuangan berbasis akrual sesuai SAP.",
+      "descriptionEn": "Compilation of general cash ledger (BKU) entries, SPJ accountability proof verification, and accrual-based government financial reporting compliance.",
+      "image": "assets/img/thumb-admin.svg",
+      "pdfUrl": "assets/docs/Farhan_Hilal_CV.pdf"
+    }
+  ],
   "gallery": [
     {
       "caption": "Professional Portrait – Farhan Hilal",
-      "image": "assets/img/gal-1.svg",
+      "image": "assets/img/item_1793998673742_WhatsApp_Image_2026-11-07_at_03.52.56__1_.jpeg",
       "tall": true,
       "title": "Professional Portrait"
     },
     {
       "caption": "Banking Internship – PT Bank Tabungan Negara (Persero) Tbk",
-      "image": "assets/img/gal-2.svg",
+      "image": "assets/img/item_1793998465222_WhatsApp_Image_2026-11-07_at_03.52.59.jpeg",
       "tall": false,
       "title": "Banking Internship (BTN KCS)"
     },
     {
       "caption": "Organizational Activities – BEM Politeknik Negeri Lhokseumawe",
-      "image": "assets/img/gal-3.svg",
+      "image": "assets/img/item_1793998586419_WhatsApp_Image_2026-11-07_at_03.52.56.jpeg",
       "tall": false,
       "title": "Organizational Leadership (BEM)"
     },
     {
       "caption": "Community Service Programs – Program Desa Binaan",
-      "image": "assets/img/gal-4.svg",
+      "image": "assets/img/item_1793998564616_WhatsApp_Image_2026-11-07_at_03.53.00.jpeg",
       "tall": true,
       "title": "Desa Binaan Community Service"
     },
     {
       "caption": "National Forums – Delegation at Forum FKMPI Nasional",
-      "image": "assets/img/gal-5.svg",
+      "image": "assets/img/item_1793998596000_WhatsApp_Image_2026-11-07_at_03.52.54.jpeg",
       "tall": false,
       "title": "Forum FKMPI Nasional Delegation"
     },
     {
       "caption": "Award Ceremonies – Juara 1 Bank Indonesia Pase Fest",
-      "image": "assets/img/gal-6.svg",
+      "image": "assets/img/item_1793998850912_WhatsApp_Image_2026-11-07_at_04.00.26.jpeg",
       "tall": true,
       "title": "Juara 1 Bank Indonesia Pase Fest"
     },
@@ -437,19 +448,9 @@
     },
     {
       "caption": "Academic Life & Campus Activities – Politeknik Negeri Lhokseumawe",
-      "image": "assets/img/gal-8.svg",
+      "image": "assets/img/item_1793999000828_WhatsApp_Image_2026-11-07_at_03.52.58.jpeg",
       "tall": false,
       "title": "Campus Life – Politeknik Negeri Lhokseumawe"
     }
-  ],
-  "cv": {
-    "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf"
-  },
-  "contact": {
-    "email": "farhan.hillal03@gmail.com",
-    "instagram": "@_farrhnn03",
-    "linkedin": "linkedin.com/in/farhanhilal",
-    "location": "Lhokseumawe, Aceh, Indonesia",
-    "whatsapp": "082315099447"
-  }
+  ]
 }
