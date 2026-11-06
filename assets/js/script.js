@@ -941,6 +941,9 @@ async function syncPortfolioData() {
 
   if (!data) return;
 
+  const lang = localStorage.getItem('farhan_portfolio_lang') || 'id';
+  const dict = I18N[lang] || I18N['id'];
+
   // 1. Update Logo & Branding
   if (data.branding) {
     const navLogoImg = document.getElementById('nav-custom-logo');
@@ -969,11 +972,11 @@ async function syncPortfolioData() {
     if (data.branding.logoSub && navLogoSub) navLogoSub.textContent = data.branding.logoSub;
   }
 
-  // 2. Update Hero Section
+  // 2. Update Hero Section (Bilingual Support)
   if (data.hero) {
-    if (data.hero.greeting) {
-      const el = document.querySelector('.hero-greeting');
-      if (el) el.textContent = data.hero.greeting;
+    const greetingEl = document.querySelector('.hero-greeting');
+    if (greetingEl) {
+      greetingEl.textContent = (lang === 'en' ? (data.hero.greetingEn || dict['hero.greeting'] || data.hero.greeting) : (data.hero.greeting || dict['hero.greeting']));
     }
     if (data.hero.name) {
       const heroNameEl = document.querySelector('.hero-name');
@@ -988,13 +991,13 @@ async function syncPortfolioData() {
         }
       }
     }
-    if (data.hero.title) {
-      const el = document.querySelector('.hero-title-text');
-      if (el) el.textContent = data.hero.title;
+    const heroTitleEl = document.querySelector('.hero-title-text');
+    if (heroTitleEl) {
+      heroTitleEl.textContent = (lang === 'en' ? (data.hero.titleEn || dict['hero.title'] || data.hero.title) : (data.hero.title || dict['hero.title']));
     }
-    if (data.hero.description) {
-      const el = document.querySelector('.hero-description');
-      if (el) el.textContent = data.hero.description;
+    const heroDescEl = document.querySelector('.hero-description');
+    if (heroDescEl) {
+      heroDescEl.textContent = (lang === 'en' ? (data.hero.descriptionEn || dict['hero.desc'] || data.hero.description) : (data.hero.description || dict['hero.desc']));
     }
     if (data.hero.portraitImage) {
       const el = document.querySelector('.hero-portrait-img');
@@ -1002,38 +1005,47 @@ async function syncPortfolioData() {
     }
   }
 
-  // 3. Update About Section
+  // 3. Update About Section (Bilingual Support)
   if (data.about) {
-    if (data.about.intro) {
-      const el = document.querySelector('.about-intro-text');
-      if (el) el.textContent = data.about.intro;
+    const aboutLeadEl = document.querySelector('.about-lead, .about-intro-text');
+    if (aboutLeadEl) {
+      aboutLeadEl.textContent = (lang === 'en' ? (data.about.introEn || dict['about.lead'] || data.about.intro) : (data.about.intro || dict['about.lead']));
     }
     if (data.about.aboutImage) {
       const el = document.querySelector('.about-portrait-img');
       if (el) el.src = data.about.aboutImage;
     }
+    // Dynamic Interests Tags
+    const interestsList = (lang === 'en' ? (data.about.interestsEn || data.about.interests) : data.about.interests);
+    if (Array.isArray(interestsList) && interestsList.length > 0) {
+      const interestContainer = document.querySelector('.interest-tags');
+      if (interestContainer) {
+        interestContainer.innerHTML = interestsList.map(item => `<span class="interest-tag">${item}</span>`).join('');
+      }
+    }
   }
 
-  // 3b. Update Education Section (Higher Education & SMA Foundation)
+  // 3b. Update Education Section (Bilingual Support)
   if (data.education) {
     const pnlTitle = document.querySelector('.timeline-item:not(.timeline-secondary) h3');
-    if (pnlTitle && data.education.institution) pnlTitle.textContent = data.education.institution;
+    if (pnlTitle) pnlTitle.textContent = (lang === 'en' ? (data.education.institutionEn || data.education.institution) : data.education.institution);
     
     const pnlDegree = document.querySelector('.timeline-item:not(.timeline-secondary) .timeline-subtitle');
-    if (pnlDegree && data.education.major) {
-      pnlDegree.textContent = (data.education.degree ? data.education.degree + ' ' : '') + data.education.major;
+    if (pnlDegree) {
+      pnlDegree.textContent = (lang === 'en' ? (dict['edu.pnl_degree'] || data.education.majorEn || data.education.major) : (data.education.major || dict['edu.pnl_degree']));
     }
     
     const pnlBadge = document.querySelector('.timeline-item:not(.timeline-secondary) .timeline-badge');
-    if (pnlBadge && data.education.degree) pnlBadge.textContent = data.education.degree;
+    if (pnlBadge) pnlBadge.textContent = (lang === 'en' ? (data.education.degreeEn || 'Applied Bachelor (D4)') : (data.education.degree || 'Sarjana Terapan (D4)'));
     
     const pnlDept = document.querySelector('[data-i18n="edu.pnl_dept"]');
-    if (pnlDept && data.education.department) pnlDept.textContent = data.education.department;
+    if (pnlDept) pnlDept.textContent = (lang === 'en' ? (data.education.departmentEn || dict['edu.pnl_dept']) : (data.education.department || dict['edu.pnl_dept']));
 
-    if (Array.isArray(data.education.subjects) && data.education.subjects.length > 0) {
+    const subjList = (lang === 'en' ? (data.education.subjectsEn || data.education.subjects) : data.education.subjects);
+    if (Array.isArray(subjList) && subjList.length > 0) {
       const subjContainer = document.querySelector('.subject-tags');
       if (subjContainer) {
-        subjContainer.innerHTML = data.education.subjects.map(s => `<span class="subject-tag">${s}</span>`).join('');
+        subjContainer.innerHTML = subjList.map(s => `<span class="subject-tag">${s}</span>`).join('');
       }
     }
 
@@ -1041,12 +1053,12 @@ async function syncPortfolioData() {
     const sma = data.education.sma || {};
     const smaTitle = document.getElementById('edu-sma-title') || document.querySelector('.timeline-secondary h3');
     if (smaTitle) {
-      smaTitle.textContent = sma.school || 'Sekolah Menengah Atas (SMA)';
+      smaTitle.textContent = (lang === 'en' ? (sma.schoolEn || dict['edu.sma_title'] || sma.school) : (sma.school || dict['edu.sma_title']));
     }
 
     const smaSub = document.getElementById('edu-sma-sub') || document.querySelector('.timeline-secondary .timeline-subtitle');
     if (smaSub) {
-      smaSub.textContent = sma.major || 'Peminatan Ilmu Pengetahuan Alam (IPA)';
+      smaSub.textContent = (lang === 'en' ? (sma.majorEn || dict['edu.sma_sub'] || sma.major) : (sma.major || dict['edu.sma_sub']));
     }
 
     const smaPeriod = document.getElementById('edu-sma-period') || document.querySelector('.timeline-secondary .timeline-badge');
@@ -1055,154 +1067,186 @@ async function syncPortfolioData() {
     }
 
     const smaCity = document.getElementById('edu-sma-city');
-    if (smaCity && sma.city) {
-      smaCity.innerHTML = `<i data-lucide="map-pin"></i> ${sma.city}`;
+    if (smaCity) {
+      smaCity.innerHTML = `<i data-lucide="map-pin"></i> ${(lang === 'en' ? (sma.cityEn || sma.city || 'Lhokseumawe City, Aceh') : (sma.city || 'Kota Lhokseumawe, Aceh'))}`;
     }
 
     const smaAct = document.getElementById('edu-sma-activities');
-    if (smaAct && sma.activities) {
-      smaAct.innerHTML = `<i data-lucide="trophy"></i> ${sma.activities}`;
+    if (smaAct) {
+      smaAct.innerHTML = `<i data-lucide="trophy"></i> ${(lang === 'en' ? (sma.activitiesEn || sma.activities || 'Active in Leadership & Student Orgs') : (sma.activities || 'Aktif Berorganisasi (Paskibra & PIK-R)'))}`;
     }
 
     const smaDesc = document.getElementById('edu-sma-desc') || document.querySelector('.timeline-secondary p');
     if (smaDesc) {
-      smaDesc.textContent = sma.description || 'Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.';
+      smaDesc.textContent = (lang === 'en' ? (sma.descriptionEn || dict['edu.sma_desc'] || sma.description) : (sma.description || dict['edu.sma_desc']));
     }
   }
 
-  // 3c. Update Professional Experience Section
+  // 3c. Update Professional Experience Section (Bilingual Support)
   if (data.experience) {
     const compEl = document.querySelector('[data-i18n="exp.company"]');
     if (compEl && data.experience.company) compEl.textContent = data.experience.company;
 
     const branchEl = document.querySelector('[data-i18n="exp.branch"]');
-    if (branchEl && data.experience.branch) branchEl.textContent = data.experience.branch;
+    if (branchEl) {
+      branchEl.textContent = (lang === 'en' ? (data.experience.branchEn || dict['exp.branch'] || data.experience.branch) : (data.experience.branch || dict['exp.branch']));
+    }
 
     const badgeEl = document.querySelector('[data-i18n="exp.badge"]');
-    if (badgeEl && (data.experience.badge || data.experience.position)) {
-      badgeEl.textContent = data.experience.badge || data.experience.position;
+    if (badgeEl) {
+      badgeEl.textContent = (lang === 'en' ? (data.experience.badgeEn || dict['exp.badge'] || data.experience.badge) : (data.experience.badge || dict['exp.badge']));
     }
 
     const roleMeta = document.querySelector('[data-i18n="exp.role_meta"]');
-    if (roleMeta && data.experience.position) roleMeta.textContent = `Posisi: ${data.experience.position}`;
+    if (roleMeta) {
+      roleMeta.textContent = (lang === 'en' ? `Role: ${data.experience.positionEn || 'Banking Intern'}` : `Posisi: ${data.experience.position || 'Banking Intern'}`);
+    }
 
     const periodMeta = document.querySelector('[data-i18n="exp.period_meta"]');
-    if (periodMeta && data.experience.period) periodMeta.textContent = `Periode: ${data.experience.period}`;
+    if (periodMeta) {
+      periodMeta.textContent = (lang === 'en' ? `Period: ${data.experience.periodEn || 'March – August (6 Months)'}` : `Periode: ${data.experience.period || 'Maret – Agustus (6 Bulan)'}`);
+    }
 
-    if (Array.isArray(data.experience.responsibilities) && data.experience.responsibilities.length > 0) {
+    const respList = (lang === 'en' ? (data.experience.responsibilitiesEn || data.experience.responsibilities) : data.experience.responsibilities);
+    if (Array.isArray(respList) && respList.length > 0) {
       const dutyParas = document.querySelectorAll('.duty-item p');
-      data.experience.responsibilities.forEach((resp, idx) => {
+      respList.forEach((resp, idx) => {
         if (dutyParas[idx]) dutyParas[idx].textContent = resp;
       });
     }
   }
 
-  // 3d. Update Organizations Section
+  // 3d. Update Organizations Section (Bilingual Support)
   if (data.organizations && Array.isArray(data.organizations) && data.organizations.length > 0) {
     const orgTimeline = document.querySelector('.org-timeline');
     if (orgTimeline) {
-      orgTimeline.innerHTML = data.organizations.map((org, idx) => `
-        <div class="org-card reveal revealed">
-          <div class="org-icon">
-            <i data-lucide="${idx === 0 ? 'award' : 'heart-handshake'}"></i>
-          </div>
-          <div class="org-content">
-            <div class="org-header">
-              <h3>${org.name}</h3>
-              <span class="org-period">${org.period}</span>
+      orgTimeline.innerHTML = data.organizations.map((org, idx) => {
+        const name = (lang === 'en' ? (org.nameEn || org.name) : (org.nameId || org.name));
+        const pos = (lang === 'en' ? (org.positionEn || org.position) : (org.positionId || org.position));
+        const acts = (lang === 'en' ? (org.activitiesEn || org.activities) : (org.activitiesId || org.activities));
+        return `
+          <div class="org-card reveal revealed">
+            <div class="org-icon">
+              <i data-lucide="${idx === 0 ? 'award' : 'heart-handshake'}"></i>
             </div>
-            <p class="org-position"><i data-lucide="star"></i> ${org.position}</p>
-            ${Array.isArray(org.activities) && org.activities.length ? `
-              <ul class="org-activities">
-                ${org.activities.map(act => `<li>${act}</li>`).join('')}
-              </ul>
-            ` : ''}
+            <div class="org-content">
+              <div class="org-header">
+                <h3>${name}</h3>
+                <span class="org-period">${org.period}</span>
+              </div>
+              <p class="org-position"><i data-lucide="star"></i> ${pos}</p>
+              ${Array.isArray(acts) && acts.length ? `
+                <ul class="org-activities">
+                  ${acts.map(act => `<li>${act}</li>`).join('')}
+                </ul>
+              ` : ''}
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 
-  // 3e. Update Achievements Section
+  // 3e. Update Achievements Section (Bilingual Support)
   if (data.achievements && Array.isArray(data.achievements) && data.achievements.length > 0) {
     const achGrid = document.querySelector('.achievements-grid');
     if (achGrid) {
       const icons = ['trophy', 'medal', 'flag', 'award', 'star'];
-      achGrid.innerHTML = data.achievements.map((ach, idx) => `
-        <div class="achievement-card reveal revealed">
-          <div class="achievement-icon">
-            <i data-lucide="${icons[idx % icons.length]}"></i>
+      achGrid.innerHTML = data.achievements.map((ach, idx) => {
+        const rank = (lang === 'en' ? (ach.rankEn || ach.rank) : (ach.rankId || ach.rank));
+        const title = (lang === 'en' ? (ach.titleEn || ach.title) : (ach.titleId || ach.title));
+        const org = (lang === 'en' ? (ach.organizerEn || ach.organizer) : (ach.organizerId || ach.organizer));
+        return `
+          <div class="achievement-card reveal revealed">
+            <div class="achievement-icon">
+              <i data-lucide="${icons[idx % icons.length]}"></i>
+            </div>
+            <h3 class="achievement-rank">${rank}</h3>
+            <p class="achievement-title">${title}</p>
+            <p class="achievement-org"><i data-lucide="map-pin" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> ${org}</p>
           </div>
-          <h3 class="achievement-rank">${ach.rank}</h3>
-          <p class="achievement-title">${ach.title}</p>
-          <p class="achievement-org"><i data-lucide="map-pin" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> ${ach.organizer}</p>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 
-  // 3f. Update Skills Section
+  // 3f. Update Skills Section (Bilingual Support)
   if (data.skills) {
-    if (Array.isArray(data.skills.technical) && data.skills.technical.length > 0) {
+    const techSkills = (lang === 'en' ? (data.skills.technicalEn || data.skills.technical) : (data.skills.technicalId || data.skills.technical));
+    if (Array.isArray(techSkills) && techSkills.length > 0) {
       const techList = document.querySelector('.skills-category:nth-child(1) .skills-list');
       if (techList) {
-        techList.innerHTML = data.skills.technical.map(s => `
+        techList.innerHTML = techSkills.map(s => `
           <div class="skill-item"><i data-lucide="check"></i><span>${s}</span></div>
         `).join('');
       }
     }
-    if (Array.isArray(data.skills.professional) && data.skills.professional.length > 0) {
+    const profSkills = (lang === 'en' ? (data.skills.professionalEn || data.skills.professional) : (data.skills.professionalId || data.skills.professional));
+    if (Array.isArray(profSkills) && profSkills.length > 0) {
       const profList = document.querySelector('.skills-category:nth-child(2) .skills-list');
       if (profList) {
-        profList.innerHTML = data.skills.professional.map(s => `
+        profList.innerHTML = profSkills.map(s => `
           <div class="skill-item"><i data-lucide="check"></i><span>${s}</span></div>
         `).join('');
       }
     }
   }
 
-  // 4. Update Dynamic Certificates (with uploaded images support)
+  // 4. Update Dynamic Certificates (Bilingual Support & Image Thumbnails)
   if (data.certificates && Array.isArray(data.certificates) && data.certificates.length > 0) {
     const certGrid = document.querySelector('.certificates-grid');
     if (certGrid) {
-      certGrid.innerHTML = data.certificates.map(c => `
-        <div class="certificate-card reveal revealed">
-          <div class="cert-image">
-            <img src="${c.image}" alt="${c.title || 'Sertifikat'}" class="cert-img-thumb" title="Klik untuk memperbesar">
-            <div class="cert-seal"><i data-lucide="check"></i></div>
+      certGrid.innerHTML = data.certificates.map(c => {
+        const title = (lang === 'en' ? (c.titleEn || c.title) : (c.titleId || c.title));
+        const issuer = (lang === 'en' ? (c.issuerEn || c.issuer) : (c.issuerId || c.issuer));
+        const btnView = dict['cert.btn_view'] || (lang === 'en' ? 'View Certificate' : 'Lihat Sertifikat');
+        return `
+          <div class="certificate-card reveal revealed">
+            <div class="cert-image">
+              <img src="${c.image}" alt="${title}" class="cert-img-thumb" title="${lang === 'en' ? 'Click to preview' : 'Klik untuk memperbesar'}">
+              <div class="cert-seal"><i data-lucide="check"></i></div>
+            </div>
+            <div class="cert-body">
+              <h3>${title}</h3>
+              <p class="cert-issuer"><i data-lucide="building"></i> ${issuer}</p>
+              <p class="cert-year"><i data-lucide="calendar"></i> ${c.year || ''}</p>
+              <button class="btn btn-small btn-outline cert-view-btn"><i data-lucide="eye"></i> <span>${btnView}</span></button>
+            </div>
           </div>
-          <div class="cert-body">
-            <h3>${c.title || ''}</h3>
-            <p class="cert-issuer"><i data-lucide="building"></i> ${c.issuer || ''}</p>
-            <p class="cert-year"><i data-lucide="calendar"></i> ${c.year || ''}</p>
-            <button class="btn btn-small btn-outline cert-view-btn"><i data-lucide="eye"></i> <span data-i18n="cert.btn_view">Lihat Sertifikat</span></button>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 
-  // 5. Update Dynamic Projects (with uploaded thumbnail banners support)
+  // 5. Update Dynamic Projects (Bilingual Support)
   if (data.projects && Array.isArray(data.projects) && data.projects.length > 0) {
     const projGrid = document.querySelector('.portfolio-grid');
     if (projGrid) {
-      projGrid.innerHTML = data.projects.map(p => `
-        <div class="portfolio-card reveal revealed" data-category="${(p.category || 'research').toLowerCase()}">
-          <div class="card-image">
-            <img src="${p.image}" alt="${p.title || 'Project'}" class="card-img-cover">
-            <span class="card-category">${p.category || 'Project'}</span>
-          </div>
-          <div class="card-body">
-            <h3>${p.title || ''}</h3>
-            ${p.subtitle ? `<p class="card-title-detail">${p.subtitle}</p>` : ''}
-            <p class="card-desc">${p.description || ''}</p>
-            <div class="card-actions">
-              <button class="btn btn-small btn-primary project-view-btn" data-project="${p.id || 'thesis'}"><i data-lucide="info"></i> <span data-i18n="port.btn_details">Detail Metodologi</span></button>
-              ${p.pdfUrl ? `<a href="${p.pdfUrl}" target="_blank" class="btn btn-small btn-ghost"><i data-lucide="file-text"></i> <span data-i18n="port.btn_pdf">Ringkasan PDF</span></a>` : ''}
+      projGrid.innerHTML = data.projects.map(p => {
+        const title = (lang === 'en' ? (p.titleEn || p.title) : p.title);
+        const category = (lang === 'en' ? (p.categoryEn || p.category) : p.category);
+        const subtitle = (lang === 'en' ? (p.subtitleEn || p.subtitle) : p.subtitle);
+        const desc = (lang === 'en' ? (p.descriptionEn || p.description) : p.description);
+        const btnDetails = dict['port.btn_details'] || (lang === 'en' ? 'Methodology Details' : 'Detail Metodologi');
+        const btnPdf = dict['port.btn_pdf'] || (lang === 'en' ? 'Summary PDF' : 'Ringkasan PDF');
+        return `
+          <div class="portfolio-card reveal revealed" data-category="${(p.category || 'research').toLowerCase()}">
+            <div class="card-image">
+              <img src="${p.image}" alt="${title}" class="card-img-cover">
+              <span class="card-category">${category}</span>
+            </div>
+            <div class="card-body">
+              <h3>${title}</h3>
+              ${subtitle ? `<p class="card-title-detail">${subtitle}</p>` : ''}
+              <p class="card-desc">${desc}</p>
+              <div class="card-actions">
+                <button class="btn btn-small btn-primary project-view-btn" data-project="${p.id || 'thesis'}"><i data-lucide="info"></i> <span>${btnDetails}</span></button>
+                ${p.pdfUrl ? `<a href="${p.pdfUrl}" target="_blank" class="btn btn-small btn-ghost"><i data-lucide="file-text"></i> <span>${btnPdf}</span></a>` : ''}
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   }
 
