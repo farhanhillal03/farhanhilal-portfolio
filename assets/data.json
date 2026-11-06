@@ -42,28 +42,82 @@
   ],
   "certificates": [
     {
-      "image": "assets/img/item_1793991083247_2e4d6958-662f-4fdc-b9b3-6b91978e34f1.jpg",
-      "issuer": "PT Bank Tabungan Negara",
+      "image": "assets/img/item_1793993984908_WhatsApp_Image_2026-11-07_at_02.39.15.jpeg",
+      "issuer": "PT Bank Tabungan Negara Kantor Cabang Syariah Lhokseumawe",
       "title": "BTN Internship Certificate",
-      "year": "2024"
+      "year": "2025"
     },
     {
-      "image": "assets/img/cert-toefl.svg",
+      "image": "assets/img/item_1793994173935_WhatsApp_Image_2026-11-07_at_02.42.40.jpeg",
       "issuer": "Language Testing Institution",
-      "title": "TOEFL Certificate – Score 400",
-      "year": "2024"
+      "title": "TOEFL Certificate",
+      "year": "2026"
     },
     {
-      "image": "assets/img/cert-bem.svg",
-      "issuer": "Politeknik Negeri Lhokseumawe",
+      "image": "assets/img/item_1793994029612_WhatsApp_Image_2026-11-05_at_14.39.49.jpeg",
+      "issuer": "Badan Eksekutif Mahasiswa",
       "title": "BEM Certificate 2023–2024",
       "year": "2024"
     },
     {
-      "image": "assets/img/item_1793991114550_1fbd54d9-72c8-49e2-9c84-aaad9f39853b.png",
+      "image": "assets/img/item_1793994061344_WhatsApp_Image_2026-11-05_at_14.39.50.jpeg",
       "issuer": "TandaSeru",
       "title": "TandaSeru Certificate",
-      "year": "2024"
+      "year": "2023"
+    },
+    {
+      "title": "SoftSkill Certificate",
+      "issuer": "Psikodista",
+      "year": "2026",
+      "image": "assets/img/item_1793994378689_WhatsApp_Image_2026-11-05_at_14.39.49__1_.jpeg"
+    },
+    {
+      "title": "Pase Fest Certificate",
+      "issuer": "Bank Indonesia Lhokseumawe",
+      "year": "2026",
+      "image": "assets/img/item_1793994646354_WhatsApp_Image_2026-11-05_at_14.39.49__2_.jpeg"
+    },
+    {
+      "title": "Desa Binaan Certificate",
+      "issuer": "Politeknik Negeri Lhokseumawe",
+      "year": "2024",
+      "image": "assets/img/item_1793994903810_WhatsApp_Image_2026-11-05_at_14.39.49__3_.jpeg"
+    },
+    {
+      "title": "Panitia PKKMB Certificate",
+      "issuer": "Politeknik Negeri Lhokseumawe",
+      "year": "2024",
+      "image": "assets/img/item_1793994970633_WhatsApp_Image_2026-11-05_at_14.39.49__4_.jpeg"
+    },
+    {
+      "title": "Eksekutif Junior BEM Certificate",
+      "issuer": "Badan Eksekutif Mahasiswa",
+      "year": "2023",
+      "image": "assets/img/item_1793995089537_WhatsApp_Image_2026-11-05_at_14.39.49__5_.jpeg"
+    },
+    {
+      "title": "Operasi Sampah Certificate",
+      "issuer": "Turun Tangan Lhokseumawe",
+      "year": "2024",
+      "image": "assets/img/item_1793995157929_WhatsApp_Image_2026-11-05_at_14.39.50__1_.jpeg"
+    },
+    {
+      "title": "Jurnal Certificate",
+      "issuer": "University Jenderal Soedirman",
+      "year": "2024",
+      "image": "assets/img/item_1793995500582_WhatsApp_Image_2026-11-07_at_03.02.03.jpeg"
+    },
+    {
+      "title": "Jurnal Certificate",
+      "issuer": "University State Manado",
+      "year": "2025",
+      "image": "assets/img/item_1793995620828_WhatsApp_Image_2026-11-07_at_03.02.03__1_.jpeg"
+    },
+    {
+      "title": "Pramuka Certificate",
+      "issuer": "Senior High School 2 State Lhokseumawe",
+      "year": "2019",
+      "image": "assets/img/item_1793995823202_WhatsApp_Image_2026-11-05_at_14.39.49__6_.jpeg"
     }
   ],
   "contact": {
@@ -77,18 +131,28 @@
     "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf"
   },
   "education": {
-    "degree": "D4 Degree",
+    "degree": "Sarjana Terapan (D4)",
     "department": "Jurusan Bisnis",
     "institution": "Politeknik Negeri Lhokseumawe",
     "major": "Manajemen Keuangan Sektor Publik",
-    "previousEducation": "SMA Negeri 1 Lhokseumawe — Peminatan Ilmu Pengetahuan Sosial (IPS)",
+    "period": "2020 – 2024",
+    "previousEducation": "SMA Negeri 2 Lhokseumawe — Peminatan Ilmu Pengetahuan Alam (IPA)",
+    "sma": {
+      "activities": "Aktif Berorganisasi (Paskibra & PIK-R)",
+      "city": "Kota Lhokseumawe, Aceh",
+      "description": "Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.",
+      "major": "Peminatan Ilmu Pengetahuan Alam (IPA)",
+      "period": "2019 – 2022",
+      "school": "Sekolah Menengah Atas (SMA)"
+    },
     "subjects": [
-      "Public Sector Accounting",
-      "Public Financial Management",
-      "Regional Financial Management",
-      "Budgeting and Financial Reporting",
-      "Financial Analysis",
-      "Government Accounting"
+      "Akuntansi Sektor Publik",
+      "Manajemen Keuangan Sektor Publik",
+      "Pengelolaan Keuangan Daerah",
+      "Penganggaran & Pelaporan Keuangan",
+      "Analisis Kinerja Keuangan",
+      "Akuntansi Pemerintahan (SAP)",
+      "Ekonometrika & Regresi Data Panel"
     ]
   },
   "experience": {

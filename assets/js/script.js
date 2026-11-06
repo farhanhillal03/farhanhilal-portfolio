@@ -89,8 +89,8 @@ const I18N = {
     "edu.thesis_title": "Pengaruh Pendapatan Asli Daerah, Belanja Modal, Dana Perimbangan, dan SiLPA terhadap Kinerja Keuangan Pemerintah Daerah di Aceh Tahun 2020–2024 (Analisis Regresi Data Panel dengan EViews 12)",
     "edu.courses_title": "Mata Kuliah Relevan (Core Competencies)",
     "edu.sma_title": "Sekolah Menengah Atas (SMA)",
-    "edu.sma_sub": "Peminatan Ilmu Pengetahuan Sosial (IPS) / Dasar Ekonomi & Bisnis",
-    "edu.sma_desc": "Membangun fondasi kuat dalam pemahaman ilmu ekonomi, akuntansi dasar, sosiologi kelembagaan, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.",
+    "edu.sma_sub": "Peminatan Ilmu Pengetahuan Alam (IPA)",
+    "edu.sma_desc": "Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.",
 
     // Professional Experience
     "exp.tag": "Pengalaman Kerja",
@@ -267,8 +267,8 @@ const I18N = {
     "edu.thesis_title": "The Effect of Regional Own-Source Revenue (PAD), Capital Expenditure, Balance Funds, and SiLPA on Local Government Financial Performance in Aceh 2020–2024 (Panel Econometric Regression via EViews 12)",
     "edu.courses_title": "Relevant Academic Coursework",
     "edu.sma_title": "Senior High School (SMA)",
-    "edu.sma_sub": "Social Sciences (IPS) Concentration / Foundational Business & Economics",
-    "edu.sma_desc": "Built strong foundational knowledge in economics, basic accounting, institutional governance, and active leadership through scouting, youth counseling, and city-level flag hoisting squads (Paskibra).",
+    "edu.sma_sub": "Natural Sciences (IPA) Concentration",
+    "edu.sma_desc": "Built strong foundational knowledge in natural sciences, mathematical logic, and active leadership through youth organizations and city-level flag hoisting squads (Paskibra).",
 
     // Professional Experience
     "exp.tag": "Career Journey",
@@ -409,6 +409,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.documentElement.setAttribute('lang', lang);
+
+    // Re-apply customized data from admin panel so custom edits are never overwritten
+    if (typeof syncPortfolioData === 'function') {
+      syncPortfolioData();
+    }
   }
 
   // Bind language switcher buttons
@@ -1006,6 +1011,153 @@ async function syncPortfolioData() {
     if (data.about.aboutImage) {
       const el = document.querySelector('.about-portrait-img');
       if (el) el.src = data.about.aboutImage;
+    }
+  }
+
+  // 3b. Update Education Section (Higher Education & SMA Foundation)
+  if (data.education) {
+    const pnlTitle = document.querySelector('.timeline-item:not(.timeline-secondary) h3');
+    if (pnlTitle && data.education.institution) pnlTitle.textContent = data.education.institution;
+    
+    const pnlDegree = document.querySelector('.timeline-item:not(.timeline-secondary) .timeline-subtitle');
+    if (pnlDegree && data.education.major) {
+      pnlDegree.textContent = (data.education.degree ? data.education.degree + ' ' : '') + data.education.major;
+    }
+    
+    const pnlBadge = document.querySelector('.timeline-item:not(.timeline-secondary) .timeline-badge');
+    if (pnlBadge && data.education.degree) pnlBadge.textContent = data.education.degree;
+    
+    const pnlDept = document.querySelector('[data-i18n="edu.pnl_dept"]');
+    if (pnlDept && data.education.department) pnlDept.textContent = data.education.department;
+
+    if (Array.isArray(data.education.subjects) && data.education.subjects.length > 0) {
+      const subjContainer = document.querySelector('.subject-tags');
+      if (subjContainer) {
+        subjContainer.innerHTML = data.education.subjects.map(s => `<span class="subject-tag">${s}</span>`).join('');
+      }
+    }
+
+    // SMA Secondary Education
+    const sma = data.education.sma || {};
+    const smaTitle = document.getElementById('edu-sma-title') || document.querySelector('.timeline-secondary h3');
+    if (smaTitle) {
+      smaTitle.textContent = sma.school || 'Sekolah Menengah Atas (SMA)';
+    }
+
+    const smaSub = document.getElementById('edu-sma-sub') || document.querySelector('.timeline-secondary .timeline-subtitle');
+    if (smaSub) {
+      smaSub.textContent = sma.major || 'Peminatan Ilmu Pengetahuan Alam (IPA)';
+    }
+
+    const smaPeriod = document.getElementById('edu-sma-period') || document.querySelector('.timeline-secondary .timeline-badge');
+    if (smaPeriod) {
+      smaPeriod.textContent = sma.period || '2019 – 2022';
+    }
+
+    const smaCity = document.getElementById('edu-sma-city');
+    if (smaCity && sma.city) {
+      smaCity.innerHTML = `<i data-lucide="map-pin"></i> ${sma.city}`;
+    }
+
+    const smaAct = document.getElementById('edu-sma-activities');
+    if (smaAct && sma.activities) {
+      smaAct.innerHTML = `<i data-lucide="trophy"></i> ${sma.activities}`;
+    }
+
+    const smaDesc = document.getElementById('edu-sma-desc') || document.querySelector('.timeline-secondary p');
+    if (smaDesc) {
+      smaDesc.textContent = sma.description || 'Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.';
+    }
+  }
+
+  // 3c. Update Professional Experience Section
+  if (data.experience) {
+    const compEl = document.querySelector('[data-i18n="exp.company"]');
+    if (compEl && data.experience.company) compEl.textContent = data.experience.company;
+
+    const branchEl = document.querySelector('[data-i18n="exp.branch"]');
+    if (branchEl && data.experience.branch) branchEl.textContent = data.experience.branch;
+
+    const badgeEl = document.querySelector('[data-i18n="exp.badge"]');
+    if (badgeEl && (data.experience.badge || data.experience.position)) {
+      badgeEl.textContent = data.experience.badge || data.experience.position;
+    }
+
+    const roleMeta = document.querySelector('[data-i18n="exp.role_meta"]');
+    if (roleMeta && data.experience.position) roleMeta.textContent = `Posisi: ${data.experience.position}`;
+
+    const periodMeta = document.querySelector('[data-i18n="exp.period_meta"]');
+    if (periodMeta && data.experience.period) periodMeta.textContent = `Periode: ${data.experience.period}`;
+
+    if (Array.isArray(data.experience.responsibilities) && data.experience.responsibilities.length > 0) {
+      const dutyParas = document.querySelectorAll('.duty-item p');
+      data.experience.responsibilities.forEach((resp, idx) => {
+        if (dutyParas[idx]) dutyParas[idx].textContent = resp;
+      });
+    }
+  }
+
+  // 3d. Update Organizations Section
+  if (data.organizations && Array.isArray(data.organizations) && data.organizations.length > 0) {
+    const orgTimeline = document.querySelector('.org-timeline');
+    if (orgTimeline) {
+      orgTimeline.innerHTML = data.organizations.map((org, idx) => `
+        <div class="org-card reveal revealed">
+          <div class="org-icon">
+            <i data-lucide="${idx === 0 ? 'award' : 'heart-handshake'}"></i>
+          </div>
+          <div class="org-content">
+            <div class="org-header">
+              <h3>${org.name}</h3>
+              <span class="org-period">${org.period}</span>
+            </div>
+            <p class="org-position"><i data-lucide="star"></i> ${org.position}</p>
+            ${Array.isArray(org.activities) && org.activities.length ? `
+              <ul class="org-activities">
+                ${org.activities.map(act => `<li>${act}</li>`).join('')}
+              </ul>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 3e. Update Achievements Section
+  if (data.achievements && Array.isArray(data.achievements) && data.achievements.length > 0) {
+    const achGrid = document.querySelector('.achievements-grid');
+    if (achGrid) {
+      const icons = ['trophy', 'medal', 'flag', 'award', 'star'];
+      achGrid.innerHTML = data.achievements.map((ach, idx) => `
+        <div class="achievement-card reveal revealed">
+          <div class="achievement-icon">
+            <i data-lucide="${icons[idx % icons.length]}"></i>
+          </div>
+          <h3 class="achievement-rank">${ach.rank}</h3>
+          <p class="achievement-title">${ach.title}</p>
+          <p class="achievement-org"><i data-lucide="map-pin" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> ${ach.organizer}</p>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 3f. Update Skills Section
+  if (data.skills) {
+    if (Array.isArray(data.skills.technical) && data.skills.technical.length > 0) {
+      const techList = document.querySelector('.skills-category:nth-child(1) .skills-list');
+      if (techList) {
+        techList.innerHTML = data.skills.technical.map(s => `
+          <div class="skill-item"><i data-lucide="check"></i><span>${s}</span></div>
+        `).join('');
+      }
+    }
+    if (Array.isArray(data.skills.professional) && data.skills.professional.length > 0) {
+      const profList = document.querySelector('.skills-category:nth-child(2) .skills-list');
+      if (profList) {
+        profList.innerHTML = data.skills.professional.map(s => `
+          <div class="skill-item"><i data-lucide="check"></i><span>${s}</span></div>
+        `).join('');
+      }
     }
   }
 

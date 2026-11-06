@@ -901,10 +901,40 @@
                             <button type="button" class="btn-upload" onclick="addSubject()"><i data-lucide="plus"></i> Tambah</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Pendidikan Sebelumnya (Slot Opsional)</label>
-                        <input type="text" id="edu_previousEducation">
+                    <hr style="border:0; border-top:1px solid var(--border); margin:24px 0;">
+                    <div class="panel-header-title" style="margin-bottom:16px;">
+                        <h3>Pendidikan Menengah Atas (SMA)</h3>
+                        <p>Rincian nama sekolah, peminatan / jurusan (IPA/IPS), dan tahun bersekolah.</p>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nama Sekolah / Jenjang</label>
+                            <input type="text" id="edu_sma_school" placeholder="Sekolah Menengah Atas (SMA)">
+                        </div>
+                        <div class="form-group">
+                            <label>Jurusan / Peminatan</label>
+                            <input type="text" id="edu_sma_major" placeholder="Peminatan Ilmu Pengetahuan Alam (IPA)">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tahun / Periode Bersekolah</label>
+                            <input type="text" id="edu_sma_period" placeholder="2019 – 2022">
+                        </div>
+                        <div class="form-group">
+                            <label>Kota / Lokasi</label>
+                            <input type="text" id="edu_sma_city" placeholder="Kota Lhokseumawe, Aceh">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Aktivitas Organisasi / Ekstrakurikuler</label>
+                        <input type="text" id="edu_sma_activities" placeholder="Aktif Berorganisasi (Paskibra & PIK-R)">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Pendidikan SMA</label>
+                        <textarea id="edu_sma_desc" rows="2" placeholder="Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota."></textarea>
+                    </div>
+                    <input type="hidden" id="edu_previousEducation">
                 </div>
             </div>
 
@@ -1198,7 +1228,15 @@
             "department": "Jurusan Bisnis",
             "institution": "Politeknik Negeri Lhokseumawe",
             "major": "D4 Manajemen Keuangan Sektor Publik",
-            "previousEducation": "SMA Negeri 1 Lhokseumawe — Peminatan Ilmu Pengetahuan Sosial (IPS)",
+            "previousEducation": "Sekolah Menengah Atas (SMA) — Peminatan Ilmu Pengetahuan Alam (IPA)",
+            "sma": {
+              "school": "Sekolah Menengah Atas (SMA)",
+              "major": "Peminatan Ilmu Pengetahuan Alam (IPA)",
+              "period": "2019 – 2022",
+              "city": "Kota Lhokseumawe, Aceh",
+              "activities": "Aktif Berorganisasi (Paskibra & PIK-R)",
+              "description": "Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota."
+            },
             "subjects": ["Public Sector Accounting", "Public Financial Management", "Regional Financial Management", "Budgeting and Financial Reporting", "Financial Analysis", "Government Accounting"]
           },
           "experience": {
@@ -1423,6 +1461,13 @@
             document.getElementById('edu_major').value = currentData.education.major || '';
             document.getElementById('edu_department').value = currentData.education.department || '';
             document.getElementById('edu_previousEducation').value = currentData.education.previousEducation || '';
+            const sma = currentData.education.sma || {};
+            document.getElementById('edu_sma_school').value = sma.school || 'Sekolah Menengah Atas (SMA)';
+            document.getElementById('edu_sma_major').value = sma.major || 'Peminatan Ilmu Pengetahuan Alam (IPA)';
+            document.getElementById('edu_sma_period').value = sma.period || '2019 – 2022';
+            document.getElementById('edu_sma_city').value = sma.city || 'Kota Lhokseumawe, Aceh';
+            document.getElementById('edu_sma_activities').value = sma.activities || 'Aktif Berorganisasi (Paskibra & PIK-R)';
+            document.getElementById('edu_sma_desc').value = sma.description || 'Membangun fondasi kuat dalam pemahaman sains, logika matematika, serta kepemimpinan aktif melalui organisasi kepemudaan dan paskibra tingkat kota.';
             renderTags('edu_subjects_container', currentData.education.subjects, removeSubject);
 
             // Experience
@@ -2150,7 +2195,15 @@
             currentData.education.degree = document.getElementById('edu_degree').value;
             currentData.education.major = document.getElementById('edu_major').value;
             currentData.education.department = document.getElementById('edu_department').value;
-            currentData.education.previousEducation = document.getElementById('edu_previousEducation').value;
+            if (!currentData.education.sma) currentData.education.sma = {};
+            currentData.education.sma.school = document.getElementById('edu_sma_school').value;
+            currentData.education.sma.major = document.getElementById('edu_sma_major').value;
+            currentData.education.sma.period = document.getElementById('edu_sma_period').value;
+            currentData.education.sma.city = document.getElementById('edu_sma_city').value;
+            currentData.education.sma.activities = document.getElementById('edu_sma_activities').value;
+            currentData.education.sma.description = document.getElementById('edu_sma_desc').value;
+            currentData.education.previousEducation = document.getElementById('edu_sma_school').value + ' — ' + document.getElementById('edu_sma_major').value;
+            document.getElementById('edu_previousEducation').value = currentData.education.previousEducation;
 
             currentData.experience.company = document.getElementById('exp_company').value;
             currentData.experience.branch = document.getElementById('exp_branch').value;
