@@ -3,7 +3,7 @@
     "logoUrl": "",
     "logoText": "Farhan Hilal",
     "logoSub": "",
-    "logoBadge": ""
+    "logoBadge": "FH"
   },
   "about": {
     "aboutImage": "assets/img/photo_1793804768133.jpg",
@@ -74,10 +74,10 @@
   ],
   "contact": {
     "email": "farhan.hillal03@gmail.com",
-    "whatsapp": "082315099447",
-    "instagram": "@farhanhilal",
+    "instagram": "@_farrhnn03",
     "linkedin": "linkedin.com/in/farhanhilal",
-    "location": "Lhokseumawe, Aceh, Indonesia"
+    "location": "Lhokseumawe, Aceh, Indonesia",
+    "whatsapp": "082315099447"
   },
   "cv": {
     "pdfPath": "assets/docs/Farhan_Hilal_CV.pdf"
@@ -86,7 +86,7 @@
     "degree": "D4 Degree",
     "department": "Jurusan Bisnis",
     "institution": "Politeknik Negeri Lhokseumawe",
-    "major": "D4 Manajemen Keuangan Sektor Publik",
+    "major": "Manajemen Keuangan Sektor Publik",
     "previousEducation": "SMA Negeri 1 Lhokseumawe — Peminatan Ilmu Pengetahuan Sosial (IPS)",
     "subjects": [
       "Public Sector Accounting",
@@ -186,7 +186,7 @@
   ],
   "hero": {
     "description": "A motivated finance graduate with an academic background in public sector financial management, accounting, regional finance, and financial administration. Experienced in banking operations, organizational activities, and administrative responsibilities. Passionate about contributing to an organization through analytical thinking, integrity, and continuous learning.",
-    "education": "D4 Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
+    "education": "Manajemen Keuangan Sektor Publik | Politeknik Negeri Lhokseumawe",
     "greeting": "Hello, I'm",
     "name": "Farhan Hilal",
     "portraitImage": "assets/img/photo_1793804609031.jpg",

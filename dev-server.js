@@ -28,16 +28,26 @@ function notifyReload() {
   }
 }
 
-// Watch directory for changes
+// Watch directory for changes — only reload on actual code changes
 let reloadTimeout;
 fs.watch(BASE_DIR, { recursive: true }, (eventType, filename) => {
-  if (filename && !filename.includes('.git') && !filename.includes('node_modules')) {
-    clearTimeout(reloadTimeout);
-    reloadTimeout = setTimeout(() => {
-      console.log(`[Reload] File changed: ${filename}`);
-      notifyReload();
-    }, 150);
+  if (!filename) return;
+  const f = filename.replace(/\\/g, '/');
+  // Never reload for uploaded assets, pdfs, or data saves!
+  if (
+    f.includes('.git') ||
+    f.includes('node_modules') ||
+    f.includes('assets/img') ||
+    f.includes('assets/docs') ||
+    f.includes('data.json')
+  ) {
+    return;
   }
+  clearTimeout(reloadTimeout);
+  reloadTimeout = setTimeout(() => {
+    console.log(`[Reload] Code changed: ${filename}`);
+    notifyReload();
+  }, 250);
 });
 
 const server = http.createServer((req, res) => {
@@ -228,12 +238,17 @@ const server = http.createServer((req, res) => {
 
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-    // Inject live-reload script into HTML
+    // Inject live-reload script into HTML (only for visitor site, NEVER for admin panel!)
     if (ext === '.html') {
       fs.readFile(filePath, 'utf-8', (readErr, content) => {
         if (readErr) {
           res.writeHead(500);
           res.end('Error loading file');
+          return;
+        }
+        if (filePath.toLowerCase().endsWith('admin.html')) {
+          res.writeHead(200, { 'Content-Type': contentType });
+          res.end(content);
           return;
         }
         const liveReloadScript = `

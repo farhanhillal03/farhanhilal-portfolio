@@ -339,6 +339,7 @@
             position: relative;
             overflow: hidden;
             display: inline-block;
+            cursor: pointer;
         }
 
         .btn-upload {
@@ -349,16 +350,17 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--primary);
-            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
             transition: 0.2s;
+            pointer-events: none; /* Let clicks pass directly through to input */
         }
 
-        .btn-upload:hover {
+        .upload-btn-wrap:hover .btn-upload {
             border-color: var(--accent);
             color: var(--accent);
+            background: #fafafa;
         }
 
         .upload-btn-wrap input[type=file] {
@@ -369,6 +371,7 @@
             cursor: pointer;
             width: 100%;
             height: 100%;
+            z-index: 5; /* Always on top to reliably capture user click */
         }
 
         /* Repeatable List Items */
@@ -1956,17 +1959,36 @@
             }, 'image/jpeg', 0.90);
         }
 
-        // Upload Helper with Interactive Cropper
+        // Upload Helper (Hero & About Portrait) - Direct, Instant & Reliable
         function handleImageUpload(input, hiddenId, previewId, aspect = 3/4) {
             if (!input.files || !input.files[0]) return;
             const file = input.files[0];
             const reader = new FileReader();
-            reader.onload = (e) => {
-                openCropModal(e.target.result, (savedUrl) => {
-                    document.getElementById(hiddenId).value = savedUrl;
-                    document.getElementById(previewId).src = savedUrl;
-                }, aspect);
-                input.value = ''; // reset so same file can be chosen again
+            reader.onload = async (e) => {
+                const base64Data = e.target.result;
+                // Instant preview update
+                document.getElementById(hiddenId).value = base64Data;
+                document.getElementById(previewId).src = base64Data;
+                showToast('Foto berhasil dipilih! Mengunggah...');
+
+                // Upload to server in background
+                try {
+                    const safeName = 'photo_' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9_.-]/g, '_');
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename: safeName, data: base64Data })
+                    });
+                    const resData = await res.json();
+                    if (resData && resData.success) {
+                        document.getElementById(hiddenId).value = resData.url;
+                        document.getElementById(previewId).src = resData.url;
+                        showToast('Foto berhasil diunggah! Klik Simpan Perubahan.');
+                        return;
+                    }
+                } catch(err) {}
+
+                showToast('Foto berhasil dimuat! Klik Simpan Perubahan.');
             };
             reader.readAsDataURL(file);
         }
