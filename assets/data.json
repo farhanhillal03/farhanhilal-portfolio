@@ -2,7 +2,7 @@
   "branding": {
     "logoUrl": "",
     "logoText": "Farhan Hilal",
-    "logoSub": "",
+    "logoSub": "Public Finance & Banking",
     "logoBadge": "FH"
   },
   "about": {
@@ -42,7 +42,7 @@
   ],
   "certificates": [
     {
-      "image": "assets/img/cert-btn.svg",
+      "image": "assets/img/item_1793991083247_2e4d6958-662f-4fdc-b9b3-6b91978e34f1.jpg",
       "issuer": "PT Bank Tabungan Negara",
       "title": "BTN Internship Certificate",
       "year": "2024"
@@ -60,15 +60,9 @@
       "year": "2024"
     },
     {
-      "image": "assets/img/cert-tandaseru.svg",
+      "image": "assets/img/item_1793991114550_1fbd54d9-72c8-49e2-9c84-aaad9f39853b.png",
       "issuer": "TandaSeru",
       "title": "TandaSeru Certificate",
-      "year": "2024"
-    },
-    {
-      "image": "assets/img/cert-dev.svg",
-      "issuer": "Various Institutions",
-      "title": "Professional Development Certificate",
       "year": "2024"
     }
   ],

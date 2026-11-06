@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
 
-      portfolioCards.forEach(card => {
+      document.querySelectorAll('.portfolio-card').forEach(card => {
         const category = card.getAttribute('data-category') || '';
         if (filter === 'all' || category.toLowerCase() === filter.toLowerCase()) {
           card.style.display = 'flex';
@@ -898,6 +898,10 @@ document.addEventListener('DOMContentLoaded', () => {
   bindLightboxEvents();
   bindProjectModalButtons();
 
+  // Expose binding functions globally for dynamic re-renders
+  window.bindLightboxEvents = bindLightboxEvents;
+  window.bindProjectModalButtons = bindProjectModalButtons;
+
   console.log('Farhan Hilal Executive Portfolio initialized successfully.');
 });
 
@@ -939,14 +943,21 @@ async function syncPortfolioData() {
     const navLogoName = document.getElementById('nav-logo-name');
     const navLogoSub = document.getElementById('nav-logo-sub');
 
-    if (data.branding.logoUrl && navLogoImg) {
-      navLogoImg.src = data.branding.logoUrl;
-      navLogoImg.style.display = 'block';
+    if (data.branding.logoUrl && data.branding.logoUrl.trim() !== '') {
+      if (navLogoImg) {
+        navLogoImg.src = data.branding.logoUrl;
+        navLogoImg.style.display = 'block';
+      }
       if (navLogoBadge) navLogoBadge.style.display = 'none';
-    } else if (navLogoBadge) {
-      if (navLogoImg) navLogoImg.style.display = 'none';
-      navLogoBadge.style.display = 'flex';
-      if (data.branding.logoBadge) navLogoBadge.textContent = data.branding.logoBadge;
+    } else {
+      if (navLogoImg) {
+        navLogoImg.src = '';
+        navLogoImg.style.display = 'none';
+      }
+      if (navLogoBadge) {
+        navLogoBadge.style.display = 'flex';
+        navLogoBadge.textContent = data.branding.logoBadge || 'FH';
+      }
     }
 
     if (data.branding.logoText && navLogoName) navLogoName.textContent = data.branding.logoText;
@@ -998,7 +1009,88 @@ async function syncPortfolioData() {
     }
   }
 
-  // 4. Update Contact Links
+  // 4. Update Dynamic Certificates (with uploaded images support)
+  if (data.certificates && Array.isArray(data.certificates) && data.certificates.length > 0) {
+    const certGrid = document.querySelector('.certificates-grid');
+    if (certGrid) {
+      certGrid.innerHTML = data.certificates.map(c => `
+        <div class="certificate-card reveal revealed">
+          <div class="cert-image">
+            <img src="${c.image}" alt="${c.title || 'Sertifikat'}" class="cert-img-thumb" title="Klik untuk memperbesar">
+            <div class="cert-seal"><i data-lucide="check"></i></div>
+          </div>
+          <div class="cert-body">
+            <h3>${c.title || ''}</h3>
+            <p class="cert-issuer"><i data-lucide="building"></i> ${c.issuer || ''}</p>
+            <p class="cert-year"><i data-lucide="calendar"></i> ${c.year || ''}</p>
+            <button class="btn btn-small btn-outline cert-view-btn"><i data-lucide="eye"></i> <span data-i18n="cert.btn_view">Lihat Sertifikat</span></button>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 5. Update Dynamic Projects (with uploaded thumbnail banners support)
+  if (data.projects && Array.isArray(data.projects) && data.projects.length > 0) {
+    const projGrid = document.querySelector('.portfolio-grid');
+    if (projGrid) {
+      projGrid.innerHTML = data.projects.map(p => `
+        <div class="portfolio-card reveal revealed" data-category="${(p.category || 'research').toLowerCase()}">
+          <div class="card-image">
+            <img src="${p.image}" alt="${p.title || 'Project'}" class="card-img-cover">
+            <span class="card-category">${p.category || 'Project'}</span>
+          </div>
+          <div class="card-body">
+            <h3>${p.title || ''}</h3>
+            ${p.subtitle ? `<p class="card-title-detail">${p.subtitle}</p>` : ''}
+            <p class="card-desc">${p.description || ''}</p>
+            <div class="card-actions">
+              <button class="btn btn-small btn-primary project-view-btn" data-project="${p.id || 'thesis'}"><i data-lucide="info"></i> <span data-i18n="port.btn_details">Detail Metodologi</span></button>
+              ${p.pdfUrl ? `<a href="${p.pdfUrl}" target="_blank" class="btn btn-small btn-ghost"><i data-lucide="file-text"></i> <span data-i18n="port.btn_pdf">Ringkasan PDF</span></a>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 6. Update Dynamic Experience Activities
+  if (data.experience && Array.isArray(data.experience.activities) && data.experience.activities.length > 0) {
+    const expGal = document.querySelector('#experience .gallery-grid');
+    if (expGal) {
+      expGal.innerHTML = data.experience.activities.map(act => `
+        <div class="gallery-item" data-caption="${act.caption || act.title || 'Aktivitas Magang Bank BTN'}">
+          <img src="${act.image}" alt="${act.title || 'Aktivitas'}">
+          <div class="gallery-item-overlay"><i data-lucide="maximize-2"></i></div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 7. Update Dynamic Gallery Masonry
+  if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+    const galleryGrid = document.querySelector('.gallery-masonry');
+    if (galleryGrid) {
+      galleryGrid.innerHTML = data.gallery.map(g => `
+        <div class="gallery-masonry-item" data-caption="${g.caption || g.title || ''}">
+          <img src="${g.image}" alt="${g.title || 'Dokumentasi Farhan Hilal'}">
+          <div class="gallery-overlay"><span>${g.title || g.caption || ''}</span></div>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 8. Update CV Download Links
+  if (data.cv && data.cv.pdfUrl) {
+    document.querySelectorAll('a[download]').forEach(a => {
+      a.setAttribute('href', data.cv.pdfUrl);
+    });
+    document.querySelectorAll('.cv-actions a[target="_blank"]').forEach(a => {
+      a.setAttribute('href', data.cv.pdfUrl);
+    });
+  }
+
+  // 9. Update Contact Links
   if (data.contact) {
     if (data.contact.email) {
       document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
@@ -1036,6 +1128,13 @@ async function syncPortfolioData() {
     }
   }
 
+  // Re-bind interactive events for dynamically generated elements
+  if (typeof window.bindLightboxEvents === 'function') {
+    window.bindLightboxEvents();
+  }
+  if (typeof window.bindProjectModalButtons === 'function') {
+    window.bindProjectModalButtons();
+  }
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }

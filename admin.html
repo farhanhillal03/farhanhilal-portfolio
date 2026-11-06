@@ -350,11 +350,16 @@
             font-size: 13px;
             font-weight: 600;
             color: var(--primary);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: 0.2s;
-            pointer-events: none; /* Let clicks pass directly through to input */
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .upload-btn-wrap .btn-upload {
+            pointer-events: none; /* Let clicks pass directly through to input file inside wrapper */
         }
 
         .upload-btn-wrap:hover .btn-upload {
@@ -1381,8 +1386,13 @@
 
             // Branding & Logo
             document.getElementById('branding_logoUrl').value = currentData.branding.logoUrl || '';
-            if (currentData.branding.logoUrl) {
-                document.getElementById('branding_logo_preview').src = currentData.branding.logoUrl;
+            const logoPrev = document.getElementById('branding_logo_preview');
+            if (currentData.branding.logoUrl && currentData.branding.logoUrl.trim() !== '') {
+                logoPrev.src = currentData.branding.logoUrl;
+                logoPrev.style.display = 'block';
+            } else {
+                logoPrev.src = '';
+                logoPrev.style.display = 'none';
             }
             document.getElementById('branding_logoBadge').value = currentData.branding.logoBadge || 'FH';
             document.getElementById('branding_logoText').value = currentData.branding.logoText || 'Farhan Hilal';
@@ -2069,8 +2079,11 @@
             const reader = new FileReader();
             reader.onload = async (e) => {
                 const base64Data = e.target.result;
-                document.getElementById('branding_logo_preview').src = base64Data;
+                const prev = document.getElementById('branding_logo_preview');
+                prev.src = base64Data;
+                prev.style.display = 'block';
                 document.getElementById('branding_logoUrl').value = base64Data;
+                if (currentData && currentData.branding) currentData.branding.logoUrl = base64Data;
                 
                 try {
                     const res = await fetch('/api/upload', {
@@ -2096,8 +2109,17 @@
 
         function resetLogoToDefault() {
             document.getElementById('branding_logoUrl').value = '';
-            document.getElementById('branding_logo_preview').src = '';
-            showToast('Logo diatur kembali ke inisial FH. Klik Simpan Perubahan!');
+            const preview = document.getElementById('branding_logo_preview');
+            if (preview) {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            const fileInput = document.getElementById('input_branding_logo');
+            if (fileInput) fileInput.value = '';
+            if (currentData && currentData.branding) {
+                currentData.branding.logoUrl = '';
+            }
+            showToast('Logo dihapus! Inisial default (FH) aktif. Klik "Simpan Perubahan" untuk menyimpan ke website.', 'info');
         }
 
         // Save All Changes
